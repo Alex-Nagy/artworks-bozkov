@@ -36,7 +36,9 @@ function App() {
         records.map(record => (
         <div key={record.id}>
           <p>{record.id}</p>
-          <img alt={record.id} src={`https://ids.lib.harvard.edu/ids/iiif/${record.id}/full/full/0/default.jpg`}/> {/* A record.id nem jó a source-ba! */}
+          {record.imagecount ? 
+            // <img alt={record.id} src={`https://ids.lib.harvard.edu/ids/iiif/${record.id}/full/full/0/default.jpg`}/> {/* A record.id nem jó a source-ba! */}
+            <img alt={record.id} src={record.primaryimageurl} /> : ""}
           <p>{record.title}</p>
           <p>{record.classification}</p>
           <p>{record.dated}</p>
