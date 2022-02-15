@@ -11,21 +11,21 @@ function App() {
     setPage(page+1);
     const newRecords = await getData(page);
     setRecords([...records, ...newRecords.records]);
-    // console.log(records);
   }
 
+  /*
   const isBottom = (el) => {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   }
   
-  const trackScrolling = () => {
+  const scrolling = () => {
     const wrappedElement = document.getElementById('root');
     if (isBottom(wrappedElement)) {
       increase();
-      // console.log('header bottom reached');
-      document.removeEventListener('scroll', trackScrolling);
+      document.removeEventListener('scroll', scrolling);
     }
   };
+*/
 
   useEffect(() => {
     const init = async() => {
@@ -33,7 +33,7 @@ function App() {
       setRecords(data.records);
     };
     init();
-    document.addEventListener('scroll', trackScrolling);
+    // document.addEventListener('scroll', scrolling);
   }, []);
 
   return (
@@ -41,8 +41,8 @@ function App() {
       <h1>Artwork</h1>
       <div className='artRecords'>
         {records ? records.map((record, index) => <Card record={record} key={index} />) : <p>Loading...</p>}
-        <button onClick={increase}>+</button>
       </div>
+      <button className="loader" onClick={increase}>+</button>
     </div>
   );
 }
