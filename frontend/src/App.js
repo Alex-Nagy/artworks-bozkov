@@ -5,11 +5,13 @@ import Card from './components/Card';
 
 function App() {
   const [records, setRecords] = useState([]);
-  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [page, setPage] = useState("/");
+  const [query, setQuery] = useState("");
 
   const increase = async () => {
-    setPage(page+1);
-    const newRecords = await getData(page);
+    setPageNumber(pageNumber+1);
+    const newRecords = await getData(pageNumber);
     setRecords([...records, ...newRecords.records]);
   }
 
@@ -37,12 +39,26 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <h1>Artwork</h1>
-      <div className='artRecords'>
-        {records ? records.map((record, index) => <Card record={record} key={index} />) : <p>Loading...</p>}
-      </div>
-      <button className="loader" onClick={increase}>+</button>
+    <div className="App">
+      <header>
+        <h1>Artwork</h1>
+        <nav>
+          <ul>
+            <li><button onClick={() => setPage("/")} >Home</button></li>
+            <li><button>My collection</button></li>
+            <li><button>Sign in</button></li>
+            <li><button>Register</button></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        { page === "/" && 
+          <div className='artRecords'>
+            {records ? records.map((record, index) => <Card record={record} key={index} />) : <p>Loading...</p>}
+          </div>
+        }
+        <button className="loader" onClick={increase}>+</button>
+      </main>
     </div>
   );
 }

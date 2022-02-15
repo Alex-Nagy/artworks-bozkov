@@ -34,41 +34,58 @@ a{
 /* App */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-  
+@import url('https://fonts.googleapis.com/css2?family=Ole&display=swap');
+
+:root {
+    --main-bg-color:  hsl(228, 28%, 20%);
+    --blue-text: #22a2bd;
+}
+
 body, html {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;      
     font-size: 14px;
     text-align: center;
-    background-color: hsl(232, 19%, 15%);;
-}
-  
-.App {
-    min-height: 100vh;
-    color: hsl(0, 0%, 100%);
-    background-color: hsl(232, 19%, 15%);
+    background-image: url('./resources/colors-1570145.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-header.App-header {
-    text-align: center;
-    width: 100%;
-    margin: 2em auto;
-    margin-top: 0;
-    color: hsl(0, 0%, 100%);
+.App {
+    background-color:  hsla(232, 19%, 15%, 30%);
+    backdrop-filter: blur(5px);
 }
-  
+
 header img {
     width: 40vw;
     margin-left: 60px;
     cursor: pointer;
 }
 
+header {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-bg-color);
+}
 
-h1 {
-    font-size: 24px;
-    color: #76FE46;
-    margin: 2em auto;
+header h1 {
+    font-family: 'Ole', cursive;
+    font-size: 54px;
+    color: var(--blue-text);
+    font-weight: 100;
+    margin-left: 1em;
+    /* margin: 2em auto; */
+    /* align-self: flex-start; */
+    /* text-align: left; */
+}
+
+nav button {
+    background-color: var(--main-bg-color);
+    color: white;
 }
 
 button {
@@ -103,7 +120,7 @@ button.loader {
 
 .artItem {
     position: relative;
-    background-color: hsl(228, 28%, 20%);
+    background-color: var(--main-bg-color);
     color: white;
     padding: .5em;
 }
