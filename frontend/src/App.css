@@ -78,8 +78,8 @@ h1 {
 } 
 
 button {
-    width: 180px;
-    height: 60px;
+    /* width: 180px; */
+    /* height: 60px; */
 	color: #104855;
     background-color: hsl(228, 28%, 20%);
 	font-size: 20px;
@@ -108,23 +108,32 @@ button:hover {
 }
 
 .artItem {
+    position: relative;
     background-color: hsl(228, 28%, 20%);
     color: white;
     padding: .5em;
     /* position: absolute; */
 }
 
-.artItem:hover {
+.artItem button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0;
+    color: white;
+}
+/* .artItem:hover {
 	color: #104855;
     background-color: #22a2bd;
-    /* box-shadow: 0px 0px 7px 7px #76FE46; */
     cursor: pointer;
 }
 .artItem:hover h3   {
     color: white;
-}
+} */
 .artItem h3 {
-	color: #22a2bd;
+	color: white;
     font-size: 14px;
     margin: 1em 0;
     font-weight: 700;
@@ -137,24 +146,25 @@ button:hover {
 }
 
 .artItem p {
-	color: #22a2bd;
+	color: white;
     font-size: 12px;
     text-align: left;
     margin: 1em;
 }
-
+/* 
 .artItem:hover p {
     color: white;
-}
+} */
 
 .artItem span.label {
-    color: white;
+    color: #22a2bd;
     display: block;
 }
-
+/* 
 .artItem:hover span.label {
     color: #104855;
-}
+} */
+
 /*
 .item {
     position: fixed;

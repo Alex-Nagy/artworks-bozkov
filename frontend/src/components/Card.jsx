@@ -10,8 +10,9 @@ const Card = (props) => {
         }
         <h3>{record.title}</h3>
         <p className="classification"><span className='label'>Classification</span>{record.classification}</p>
-        <p className="workType"><span className='label'>Work type</span>{record.worktypes.map((item, index) => item.worktype)}</p>
+        <p className="workType"><span className='label'>Work type</span>{record.worktypes && record.worktypes.map((item, index) => item.worktype)}</p>
         <p className="century">{record.century}</p>
+        <button>+</button>
     </div>
     )
 }
