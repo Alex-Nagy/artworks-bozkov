@@ -41,7 +41,8 @@ body, html {
     -moz-osx-font-smoothing: grayscale;      
     font-size: 14px;
     text-align: center;
-    background-color: hsl(232, 19%, 15%);;
+    /* background-color: hsl(232, 19%, 15%);; */
+    background-color: whitesmoke;
 }
   
 .App {
@@ -67,7 +68,7 @@ header img {
 
 h1 {
     font-size: 24px;
-    color: #76FE46;
+    /* color: #76FE46; */
     margin: 2em auto;
 }
 
@@ -80,11 +81,12 @@ h1 {
 button {
     width: 180px;
     height: 60px;
+    
 	color: #104855;
     background-color: hsl(228, 28%, 20%);
 	font-size: 20px;
 	font-weight: 900;
-    margin: 20px;
+    margin: 20px auto;
 	padding: 16px 24px;
 	border: none;
 	/* border-radius: 12px; */
@@ -230,3 +232,19 @@ button:hover {
     margin: -4em auto 4em auto;
 }
 */
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10em;
+}
+
+.imageInDetails {
+  max-width: 40vw;
+  max-height: 50vh;
+}
+
+.noImageInDetails {
+  height: 30vh;
+}

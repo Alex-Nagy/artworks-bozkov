@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { getData } from './api';
-import Card from './components/Card';
+import Header from './components/Header';
+import List from './components/List';
+import Details from './components/Details';
 
 function App() {
-  const [records, setRecords] = useState(null);
-
-  useEffect(() => {
-    const init = async() => {
-      const data = await getData();
-      console.log(data);
-      setRecords(data.records);
-    };
-    init();
-  }, []);
 
   return (
     <div>
-      <h1>Artwork</h1>
-      <div className='artRecords'>
-        {records ? records.map((record, index) => <Card record={record} key={index} />) : <p>Loading...</p>}
-      </div>
+      <BrowserRouter>
+        <Header /> 
+        <Routes>
+          <Route path='/' element={<List />} />
+          <Route path='details/:id' element={<Details />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
+
 }
 
 export default App;
+
+
