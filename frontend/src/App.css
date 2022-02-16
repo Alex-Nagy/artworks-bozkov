@@ -34,70 +34,79 @@ a{
 /* App */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
-  
+@import url('https://fonts.googleapis.com/css2?family=Ole&display=swap');
+
+:root {
+    --main-bg-color:  hsl(228, 28%, 20%);
+    --blue-text: #22a2bd;
+}
+
 body, html {
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;      
     font-size: 14px;
     text-align: center;
-    /* background-color: hsl(232, 19%, 15%);; */
-    background-color: whitesmoke;
-}
-  
-.App {
-    min-height: 100vh;
-    color: hsl(0, 0%, 100%);
-    background-color: hsl(232, 19%, 15%);
+    background-image: url('./img/colors-1570145.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
-header.App-header {
-    text-align: center;
-    width: 100%;
-    margin: 2em auto;
-    margin-top: 0;
-    color: hsl(0, 0%, 100%);
+.App {
+    background-color:  hsla(232, 19%, 15%, 30%);
+    backdrop-filter: blur(6px);
 }
-  
+
 header img {
     width: 40vw;
     margin-left: 60px;
     cursor: pointer;
 }
 
-
-h1 {
-    font-size: 24px;
-    /* color: #76FE46; */
-    margin: 2em auto;
+header {
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--main-bg-color);
 }
 
-.buttonsDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} 
+header h1 {
+    font-family: 'Ole', cursive;
+    font-size: 54px;
+    color: var(--blue-text);
+    font-weight: 100;
+    margin-left: 1em;
+    /* margin: 2em auto; */
+    /* align-self: flex-start; */
+    /* text-align: left; */
+}
+
+nav button {
+    background-color: var(--main-bg-color);
+    color: white;
+}
 
 button {
-    width: 180px;
-    height: 60px;
-    
 	color: #104855;
     background-color: hsl(228, 28%, 20%);
 	font-size: 20px;
 	font-weight: 900;
-    margin: 20px auto;
+    margin: 20px;
 	padding: 16px 24px;
 	border: none;
-	/* border-radius: 12px; */
 	cursor: pointer;
-    /* box-shadow: 0px 0px 7px 7px #76FE46; */
 }
 
 button:hover {
 	color: white;
 	background-color: #22a2bd;
-    /* box-shadow: 0px 0px 7px 7px #22a2bd; */
+}
+
+button.loader {
+    width: 80vw;
+    margin: 0 auto 2em;
 }
 
 .artRecords {
@@ -106,56 +115,49 @@ button:hover {
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 40px;
+    grid-gap: 24px;
 }
 
 .artItem {
-    background-color: hsl(228, 28%, 20%);
+    position: relative;
+    background-color: var(--main-bg-color);
     color: white;
     padding: .5em;
-    /* position: absolute; */
 }
 
-.artItem:hover {
-	color: #104855;
-    background-color: #22a2bd;
-    /* box-shadow: 0px 0px 7px 7px #76FE46; */
-    cursor: pointer;
-}
-.artItem:hover h3   {
+.artItem button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0;
     color: white;
 }
+
 .artItem h3 {
-	color: #22a2bd;
-    font-size: 14px;
+	color: white;
+    font-size: 16px;
     margin: 1em 0;
     font-weight: 700;
 }
 
 .artItem img {
-    width: 99%;
+    width: 80%;
     border-radius: none;
     margin: 0 0 1em 0;
 }
 
 .artItem p {
-	color: #22a2bd;
-    font-size: 12px;
+	color: white;
+    font-size: 14px;
     text-align: left;
     margin: 1em;
 }
 
-.artItem:hover p {
-    color: white;
-}
-
 .artItem span.label {
-    color: white;
+    color: #22a2bd;
     display: block;
-}
-
-.artItem:hover span.label {
-    color: #104855;
 }
 /*
 .item {
@@ -233,6 +235,8 @@ button:hover {
 }
 */
 
+
+/*
 nav {
   display: flex;
   justify-content: center;
@@ -248,3 +252,4 @@ nav {
 .noImageInDetails {
   height: 30vh;
 }
+*/

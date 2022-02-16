@@ -44,7 +44,7 @@ const Details = () => {
         <p>Loading...</p>
       }
 
-      <Link to="/"><button>Back to lists</button></Link>
+      <Link to="/browse"><button>Back to lists</button></Link>
 
     </div>
   );
