@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { getData } from '../api';
 import Card from './Card';
 
-const List = () => {
+const Homepage = () => {
 
-  const [ records, setRecords ] = useState(null);
+  const [ records, setRecords ] = useState([]);
   const [ pageNumber, setPageNumber ] = useState(1);
 
   useEffect(() => {
     const init = async () => {
-      const data = await getData(1);
-      console.log(data);
+      const data = await getData(pageNumber);
       setRecords(data.records);
+      console.log(data);
     };
     init();
   }, []);
@@ -24,7 +24,7 @@ const List = () => {
 
   return (
     <div className='artRecords'>
-      { records ? 
+      { records.length ? 
         records.map((record) => <Card key={record.id} record={record} />) : 
         <p className='loading'>Loading...</p>
       }
@@ -33,4 +33,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default Homepage;
