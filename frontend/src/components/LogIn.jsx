@@ -31,7 +31,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function LogIn() {
+export default function LogIn(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -126,6 +126,7 @@ export default function LogIn() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                onChange={props.onNameChange}
               />
               <TextField
                 margin="normal"
@@ -136,6 +137,7 @@ export default function LogIn() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={props.onPasswordChange}
               />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
@@ -148,6 +150,7 @@ export default function LogIn() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={props.onSubmit}
               >
                 Sign In
               </Button>

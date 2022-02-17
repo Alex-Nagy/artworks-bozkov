@@ -55,6 +55,9 @@ body, html {
 .App {
   background-color: hsla(232, 19%, 15%, 30%);
   backdrop-filter: blur(6px);
+  min-height: 100vh;
+  /* width: 100vw; */
+
 }
 
 header img {
@@ -64,12 +67,11 @@ header img {
 }
 
 header {
-  width: 80vw;
-  height: 80px;
+  width: calc(100vw - 17px);
+  /* height: 80px; */
   position: sticky;
   top: 0;
   z-index: 999;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -78,10 +80,13 @@ header {
 
 header h1 {
   font-family: 'Ole', cursive;
-  font-size: 54px;
-  color: var(--blue-text);
+  position: absolute;
+  top: 0;
+  left: .5em;
+  font-size: 124px;
+  color: rgba(129, 234, 255, 0.9);
   font-weight: 100;
-  margin-left: 1em;
+  mix-blend-mode: hard-light;
   /* margin: 2em auto; */
   /* align-self: flex-start; */
   /* text-align: left; */
@@ -128,7 +133,7 @@ button.loader {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: var(--main-bg-color);
   color: white;
 }
@@ -153,9 +158,12 @@ button.loader {
 }
 
 .artItem img {
-  width: 80%;
+  /* width: 80%; */
+  max-width: 240px;
+  max-height: 240px;
   border-radius: none;
   margin: 0 0 1em 0;
+  object-fit: cover;
 }
 
 .artItem p {

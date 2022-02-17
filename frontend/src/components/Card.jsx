@@ -25,7 +25,7 @@ const Card = ({ record }) => {
 				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
 			</div>
 
-			<button>+</button>
+			<button title="Add to my collection">+</button>
 		</div>
 	);
 };
