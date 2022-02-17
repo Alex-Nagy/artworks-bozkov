@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
 
-const Details = () => {
+const Details = ({addToMyCollection}) => {
 
   const { id } = useParams();
   // console.log(id);
@@ -45,7 +45,7 @@ const Details = () => {
         </div> :
         <p>Loading...</p>
       }
-
+      <button title="Add to my collection" onClick={addToMyCollection}>+</button>
       <Link to="/browse"><button>Back to the collection</button></Link>
 
     </div>

@@ -3,5 +3,34 @@
         "name": "Big Fart Engine",
         "password": "puki",
         "todos": []
+    },
+    {
+        "name": "Timi",
+        "password": "123",
+        "todos": [
+            "my artwork",
+            "my artwork"
+        ]
+    },
+    {
+        "name": "Alex",
+        "password": "alex",
+        "todos": [
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork",
+            "my artwork"
+        ]
+    },
+    {
+        "name": "Andris",
+        "password": "123",
+        "todos": []
     }
 ]
