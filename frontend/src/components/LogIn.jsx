@@ -66,7 +66,7 @@ export default function LogIn() {
       <Grid
         container
         component="main"
-        sx={{ height: "calc(100vh - 100px)", width: "100vw" }}
+        sx={{ height: "calc(100vh - 80px)", width: "100vw" }}
       >
         <CssBaseline />
         <Grid
