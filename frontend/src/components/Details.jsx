@@ -20,7 +20,7 @@ const Details = () => {
   }, []);
   
   return (
-    <div>
+    <div className='details'>
 
       <h1>Object details</h1>
 
@@ -30,21 +30,23 @@ const Details = () => {
             <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
             <img src={noImage} alt='not available' className='noImageInDetails' /> 
 				  }
-          <p>Title: {details.title}</p>
-          { details.people ?
-            details.people.map((artist) => <p key={artist.personid}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
-            <p>Unknown artist</p> 
-          } 
-          <p>Date: {details.dated}</p>
-          <p>Culture: {details.culture}</p>
-          <p>Classification: {details.classification}</p>
-          <p>Technique: {details.technique}</p>
-          <p>Dimensions: {details.dimensions}</p>
+          <div className='objectDetails'>
+            <p><span>Title:</span> {details.title}</p>
+            { details.people ?
+              details.people.map((artist) => <p key={artist.personid}><span>{artist.role}:</span> {artist.name}</p>) : 
+              <p>Unknown artist</p> 
+            } 
+            <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
+            <p><span>Culture:</span> {details.culture}</p>
+            <p><span>Classification:</span> {details.classification}</p>
+            <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
+            <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
+          </div> :
         </div> :
         <p>Loading...</p>
       }
 
-      <Link to="/browse"><button>Back to lists</button></Link>
+      <Link to="/browse"><button>Back to the collection</button></Link>
 
     </div>
   );
