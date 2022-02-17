@@ -67,14 +67,30 @@ header img {
   cursor: pointer;
 }
 
+section.home {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./img/pexels-una-laurencic-20967.jpg');
+  background-size: cover;
+}
 section.home img {
-  width: 80vw;
-  height: 50vw;
+  width: 100%;
   object-fit: cover;
 }
 
 section.home h1 {
   color: #fff;
+  /* position: absolute; */
+  /* top: 1rem;
+  left: auto;
+  right: auto; */
+  /* margin: 0 auto; */
 }
 
 header {
@@ -94,11 +110,12 @@ header h1 {
   font-family: 'Ole', cursive;
   position: absolute;
   top: 0;
-  left: .5em;
+  left: .25em;
   font-size: 124px;
   color: rgba(129, 234, 255, 0.9);
-  font-weight: 100;
-  mix-blend-mode: hard-light;
+  font-weight: 300;
+  /* mix-blend-mode: exclusion; */
+  /* transform: rotate(-20deg); */
   /* margin: 2em auto; */
   /* align-self: flex-start; */
   /* text-align: left; */
