@@ -1,5 +1,6 @@
 import React from 'react';
 import http from 'axios';
+import { Link } from 'react-router-dom';
 
 const LogIn = ({ authUser, authPassword, setAuthUser, setAuthPassword }) => {
 
@@ -15,21 +16,22 @@ const LogIn = ({ authUser, authPassword, setAuthUser, setAuthPassword }) => {
       alert('Successfully login')
       //console.log("Belépve")
       // setSectionToAppear("todos")
-      // localStorage.setItem('user', authUser)
-      // localStorage.setItem('password', authPassword)
+      localStorage.setItem('user', authUser)
+      localStorage.setItem('password', authPassword)
     } catch (err) {
       alert('Wrong username or password');
     }
   };
 
   return (
-    <div>
+    <section>
       <h1>Login</h1>
-      <input type="text" placeholder="authUsername" value={authUser} onChange={e => setAuthUser(e.target.value)} />
-      <input type="password" placeholder="authPassword" value={authPassword} onChange={e => setAuthPassword(e.target.value)} />
+      <input type="text" placeholder="username" value={authUser} onChange={e => setAuthUser(e.target.value)} />
+      <input type="password" placeholder="password" value={authPassword} onChange={e => setAuthPassword(e.target.value)} />
       {/* <button onClick={() => setSectionToAppear("registration")}>I don't have an account</button> */}
       <button onClick={login}>Log in</button>
-    </div>
+      <h2>If you haven't registered yet, please fill out the registration form.<Link to='/register' className='link'><button>Register</button></Link></h2>
+    </section>
   )
 }
 

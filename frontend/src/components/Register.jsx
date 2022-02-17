@@ -12,6 +12,7 @@ const Register = ({ name, password, setName, setPassword }) => {
       alert("Successfull registration");
       setName("");
       setPassword("");
+      // window.history.push("/collection");
       // setSection("login");
     } catch (err) {
       if (err.response) {
@@ -33,12 +34,12 @@ const Register = ({ name, password, setName, setPassword }) => {
   }
   
   return (
-    <>
+    <section>
         <h1>Registration</h1>
         <input name="name" type="text" onChange={(e) => setName(e.target.value)} value={name} placeholder="name" />
         <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="password" />
-        <button onClick={register}>Sign up</button>
-    </>
+        <button onClick={register}>Register</button>
+    </section>
   )
 }
 

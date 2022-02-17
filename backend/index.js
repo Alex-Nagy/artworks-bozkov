@@ -10,21 +10,22 @@ app.use(express.json());
 let users = require("./users.json");
 
 app.post("/api/signup", (req, res) => {
-  if (!req.body.name || !req.body.password)
-    return res.status(400).json("missing credentials");
+  if (!req.body.name || !req.body.password) return res.status(400).json("missing credentials");
+
   const userExists = users.some((user) => user.name === req.body.name);
   if (userExists) return res.sendStatus(409);
   const user = {
     name: req.body.name,
     password: req.body.password,
-    todos: [],
+    mycollection: [],
   };
   users.push(user);
   fs.writeFileSync("users.json", JSON.stringify(users, null, 4));
   res.sendStatus(200);
+
 });
 
-app.post("/api/todo", (req, res) => {
+app.post("/api/mycollection", (req, res) => {
   const authHeader = req.header("authorization");
   if (!authHeader) return res.sendStatus(401);
 
@@ -37,17 +38,16 @@ app.post("/api/todo", (req, res) => {
 
   if (!user) return res.sendStatus(401);
 
-  if (!req.body.todo) return res.sendStatus(400);
+  if (!req.body.artwork) return res.sendStatus(400);
+  const artwork = req.body.artwork;
 
-  const todo = req.body.todo;
-
-  user.todos.push(todo);
+  user.mycollection.push(artwork);
   fs.writeFileSync("users.json", JSON.stringify(users, null, 4));
-
-  res.json(user.todos);
+    // https://artwork-backend.herokuapp.com/upload  
+  res.json(user.mycollection);
 });
 
-app.get("/api/todo", (req, res) => {
+app.get("/api/mycollection", (req, res) => {
   const authHeader = req.header("authorization");
   if (!authHeader) return res.sendStatus(401);
 
@@ -60,7 +60,7 @@ app.get("/api/todo", (req, res) => {
 
   if (!user) return res.sendStatus(401);
 
-  res.json(user.todos);
+  res.json(user.mycollection);
 });
 
 app.post("/api/login", (req, res) => {

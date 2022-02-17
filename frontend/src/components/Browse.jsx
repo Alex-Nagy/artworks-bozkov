@@ -7,7 +7,7 @@ const Browse = ({ records, onChange, addToMyCollection }) => {
     <>
     <div className='artRecords'>
       { records.length ? 
-        records.map((record, index) => <Card key={index} record={record} addToMyCollection={addToMyCollection} />) : 
+        records.map((record, index) => <Card key={index} record={record} addToMyCollection={() => addToMyCollection(record)} />) : 
         <p className='loading'>Loading...</p>
       }
     </div>

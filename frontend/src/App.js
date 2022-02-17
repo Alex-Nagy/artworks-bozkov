@@ -22,7 +22,7 @@ function App() {
   const [authUser, setAuthUser] = useState("");
   const [authPassword, setAuthPassword] = useState("");
 
-  const [toMyCollection, setToMyCollection] = useState("my artwork");
+  // const [artwork, setArtwork] = useState({});
 
   useEffect(() => {
     const init = async () => {
@@ -38,32 +38,29 @@ function App() {
     if (!user || !password) return;
     setAuthUser(user);
     setAuthPassword(password);
-
-    //setSection("login");
   }, []);
 
-  /*
-  const signout = () => {
 
+  const signOut = () => {
     localStorage.removeItem('user', authUser)
     localStorage.removeItem('password', authPassword)
 
     setAuthUser('');
     setAuthPassword('');
-    setSectionToAppear('login');
-  };*/
+  }
 
   const increase = async () => {
     setPageNumber(pageNumber + 1);
   };
 
-  const addToMyCollection = async () => {
+  const addToMyCollection = async (artwork) => {
     console.log("Added to my collection");
+    console.log(authUser);
     try {
       await http.post(
-        "http://localhost:4000/api/todo",
+        "http://localhost:4000/api/mycollection",
         {
-          todo: toMyCollection,
+          artwork: artwork,
         },
         {
           headers: {
@@ -78,12 +75,13 @@ function App() {
     }
   };
 
-  console.log(records);
+  // console.log(records);
+  console.log(authUser);
 
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header authUser={authUser} signOut={signOut} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route
@@ -102,7 +100,7 @@ function App() {
           />
           <Route path="myCollection" element={<MyCollection />} />
           <Route
-            path="logIn"
+            path="signIn"
             element={
               <LogIn
                 authUser={authUser}

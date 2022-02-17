@@ -45,7 +45,7 @@ const Details = ({addToMyCollection}) => {
         </div> :
         <p>Loading...</p>
       }
-      <button title="Add to my collection" onClick={addToMyCollection}>+</button>
+      <button title="Add to my collection" onClick={() => addToMyCollection(details)}>+</button>
       <Link to="/browse"><button>Back to the collection</button></Link>
 
     </div>
