@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import noImage from '../img/NoImageAvailable.jpg'
 
-const Card = ({ record, addToMyCollection }) => {
+const Card = ({ record, addToMyCollection, loggedIn }) => {
 
 	return (
 		<div key={record.id} className='artItem'>
@@ -25,7 +25,7 @@ const Card = ({ record, addToMyCollection }) => {
 				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
 			</div>
 
-			<button title="Add to my collection" onClick={addToMyCollection}>+</button>
+			{loggedIn && <button title="Add to my collection" onClick={addToMyCollection}>+</button>}
 		</div>
 	);
 };

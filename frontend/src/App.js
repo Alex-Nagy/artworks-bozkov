@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getData } from "./api";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import http from "axios";
 
@@ -22,7 +22,10 @@ function App() {
   const [authUser, setAuthUser] = useState("");
   const [authPassword, setAuthPassword] = useState("");
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
   // const [artwork, setArtwork] = useState({});
+  // const history = useNavigate();
 
   useEffect(() => {
     const init = async () => {
@@ -38,8 +41,29 @@ function App() {
     if (!user || !password) return;
     setAuthUser(user);
     setAuthPassword(password);
+    setLoggedIn(true);
   }, []);
 
+  const login = async () => {
+    try {
+      await http.post('http://localhost:4000/api/login', {
+
+      }, {
+        headers: {
+          authorization: authUser + ':::' + authPassword
+        }
+      })
+      // alert('Successfully login')
+      //console.log("Belépve")
+      // setSectionToAppear("todos")
+      localStorage.setItem('user', authUser)
+      localStorage.setItem('password', authPassword)
+      setLoggedIn(true);
+      // history.push('/mycollection');
+    } catch (err) {
+      alert('Wrong username or password');
+    }
+  };
 
   const signOut = () => {
     localStorage.removeItem('user', authUser)
@@ -47,6 +71,7 @@ function App() {
 
     setAuthUser('');
     setAuthPassword('');
+    setLoggedIn(false);
   }
 
   const increase = async () => {
@@ -68,7 +93,7 @@ function App() {
           },
         }
       );
-      alert("todo added");
+      alert("Artwork added");
       //setTodo('')
     } catch (err) {
       alert("Ooops something went wrong");
@@ -81,7 +106,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header authUser={authUser} signOut={signOut} />
+        <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route
@@ -91,6 +116,7 @@ function App() {
                 records={records}
                 onChange={increase}
                 addToMyCollection={addToMyCollection}
+                loggedIn={loggedIn}
               />
             }
           />
@@ -107,6 +133,8 @@ function App() {
                 authPassword={authPassword}
                 setAuthUser={setAuthUser}
                 setAuthPassword={setAuthPassword}
+                setLoggedIn={setLoggedIn}
+                login={login}
               />
             }
           />
@@ -118,6 +146,7 @@ function App() {
                 password={password}
                 setName={setName}
                 setPassword={setPassword}
+                setLoggedIn={setLoggedIn}
               />
             }
           />

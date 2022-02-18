@@ -1,7 +1,7 @@
 import React from 'react';
 import http from 'axios';
 
-const Register = ({ name, password, setName, setPassword }) => {
+const Register = ({ name, password, setName, setPassword, setLoggedIn }) => {
 
   const register = async () => {
     try {
@@ -10,8 +10,13 @@ const Register = ({ name, password, setName, setPassword }) => {
         password: password
       })
       alert("Successfull registration");
+
+      localStorage.setItem('user', name);
+      localStorage.setItem('password', password);
+      setLoggedIn(true);
       setName("");
       setPassword("");
+      setLoggedIn(true);
       // window.history.push("/collection");
       // setSection("login");
     } catch (err) {

@@ -121,6 +121,13 @@ header h1 {
   /* text-align: left; */
 }
 
+header p {
+  position: absolute;
+  right: 12px;
+  top: 100px;
+  color: hsl(228, 28%, 20%);
+}
+
 nav button {
   background-color: var(--main-bg-color);
   color: white;
