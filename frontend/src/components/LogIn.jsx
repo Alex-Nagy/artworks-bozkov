@@ -4,36 +4,14 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const LogIn = ({ authUser, authPassword, setAuthUser, setAuthPassword, setLoggedIn, login }) => {
 
-  // const history = useNavigate();
-/*
-  const login = async () => {
-    try {
-      await http.post('http://localhost:4000/api/login', {
-
-      }, {
-        headers: {
-          authorization: authUser + ':::' + authPassword
-        }
-      })
-      alert('Successfully login')
-      //console.log("Belépve")
-      // setSectionToAppear("todos")
-      localStorage.setItem('user', authUser)
-      localStorage.setItem('password', authPassword)
-      setLoggedIn(true);
-      // history.push('/mycollection');
-    } catch (err) {
-      alert('Wrong username or password');
-    }
-  };
-*/
   return (
     <section>
-      <h1>Login</h1>
-      <input type="text" placeholder="username" value={authUser} onChange={e => setAuthUser(e.target.value)} />
-      <input type="password" placeholder="password" value={authPassword} onChange={e => setAuthPassword(e.target.value)} />
-      {/* <button onClick={() => setSectionToAppear("registration")}>I don't have an account</button> */}
-      <button onClick={login}>Log in</button>
+      <h1>Sign in</h1>
+      <form onSubmit={login}>
+        <input type="email" placeholder="email" value={authUser} onChange={e => setAuthUser(e.target.value)} />
+        <input type="password" placeholder="password" value={authPassword} onChange={e => setAuthPassword(e.target.value)} />
+        <button>Sign in</button>
+      </form>
       <h2>If you haven't registered yet, please fill out the registration form.</h2>
       <Link to='/register' className='link'><button>Register</button></Link>
     </section>

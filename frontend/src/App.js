@@ -54,7 +54,7 @@ function App() {
         }
       })
       // alert('Successfully login')
-      //console.log("Belépve")
+      //console.log("Betépve")
       // setSectionToAppear("todos")
       localStorage.setItem('user', authUser)
       localStorage.setItem('password', authPassword)
@@ -80,7 +80,7 @@ function App() {
 
   const addToMyCollection = async (artwork) => {
     console.log("Added to my collection");
-    console.log(authUser);
+    // console.log(authUser);
     try {
       await http.post(
         "http://localhost:4000/api/mycollection",
@@ -101,7 +101,7 @@ function App() {
   };
 
   // console.log(records);
-  console.log(authUser);
+  // console.log(authUser);
 
   return (
     <div className="App">
@@ -122,7 +122,7 @@ function App() {
           />
           <Route
             path="details/:id"
-            element={<Details addToMyCollection={addToMyCollection} />}
+            element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} />}
           />
           <Route path="myCollection" element={<MyCollection />} />
           <Route

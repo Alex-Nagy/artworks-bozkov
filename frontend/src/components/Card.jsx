@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import noImage from '../img/NoImageAvailable.jpg'
+import { HiOutlineSaveAs } from "react-icons/hi";
+import { CgDetailsMore } from "react-icons/cg";
 
 const Card = ({ record, addToMyCollection, loggedIn }) => {
+    const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
+    const showPicture = (e) => {
+		setItemToDisplay(e);
+	  }
+	  const itemClose = () => {
+		setItemToDisplay(false);
+	  }
+  
 	return (
 		<div key={record.id} className='artItem'>
 
 			<div>
-				<Link to={`/details/${record.id}`}>
+				{/* <Link to={`/details/${record.id}`}> */}
 				{ record.primaryimageurl ? 
-					<img src={record.primaryimageurl} alt={record.title} /> : 
+					<img src={record.primaryimageurl} alt={record.title} onClick={() => showPicture(record.primaryimageurl)} /> : 
 					<img src={noImage} alt='not available' /> 
 				}
-				</Link>
+				{/* </Link> */}
 				<h3>{record.title}</h3>
 			</div>
 
@@ -24,8 +34,17 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 				} 
 				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
 			</div>
+			<div className="actions">
+				<Link to={`/details/${record.id}`}><button title="details"><CgDetailsMore /></button></Link>
+				{loggedIn && <button title="Add to my collection" onClick={addToMyCollection}><HiOutlineSaveAs /></button>}
+			</div>
 
-			{loggedIn && <button title="Add to my collection" onClick={addToMyCollection}>+</button>}
+			{itemToDisplay!==false &&
+				<div className="imageItem" onClick={itemClose}>
+            		<img src={record.primaryimageurl} alt={record.title}/>;
+        		</div>
+            	// <Picture onClick={itemClose} item={pixArray[itemToDisplay]} />
+	        }  			
 		</div>
 	);
 };

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import http from 'axios';
 
 const Register = ({ name, password, setName, setPassword, setLoggedIn }) => {
-
-  const register = async () => {
+  
+  const register = async (e) => {
+    e.preventDefault();
     try {
       await http.post('http://localhost:4000/api/signup', {
         name: name,
@@ -13,10 +14,10 @@ const Register = ({ name, password, setName, setPassword, setLoggedIn }) => {
 
       localStorage.setItem('user', name);
       localStorage.setItem('password', password);
-      setLoggedIn(true);
+      // setLoggedIn(true);
       setName("");
       setPassword("");
-      setLoggedIn(true);
+      // setLoggedIn(true);
       // window.history.push("/collection");
       // setSection("login");
     } catch (err) {
@@ -37,13 +38,15 @@ const Register = ({ name, password, setName, setPassword, setLoggedIn }) => {
       }
     }
   }
-  
+
   return (
     <section>
         <h1>Registration</h1>
-        <input name="name" type="text" onChange={(e) => setName(e.target.value)} value={name} placeholder="name" />
-        <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="password" />
-        <button onClick={register}>Register</button>
+        <form onSubmit={(e) => register(e)}>
+        <input name="email" type="email" onChange={(e) => setName(e.target.value)} value={name} placeholder="email" required />
+        <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="password" required />
+        <button>Register</button>
+        </form>
     </section>
   )
 }

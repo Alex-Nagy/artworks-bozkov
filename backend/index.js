@@ -22,7 +22,6 @@ app.post("/api/signup", (req, res) => {
   users.push(user);
   fs.writeFileSync("users.json", JSON.stringify(users, null, 4));
   res.sendStatus(200);
-
 });
 
 app.post("/api/mycollection", (req, res) => {

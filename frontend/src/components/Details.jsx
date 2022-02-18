@@ -2,19 +2,32 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
+import { HiOutlineSaveAs } from "react-icons/hi";
 
-const Details = ({addToMyCollection}) => {
+const Details = ({addToMyCollection, loggedIn}) => {
 
   const { id } = useParams();
   // console.log(id);
 
   const [ details, setDetails ] = useState(null);
+  const [ savedDetails, setSavedDetails ] = useState(null);
 
   useEffect(() => {
     const init = async () => {
       const detailsData = await getDetails(id);
       console.log(detailsData);
       setDetails(detailsData);
+      setSavedDetails({
+        id: detailsData.id,
+        title: detailsData.title,
+        primaryimageurl: detailsData.primaryimageurl,
+        people: detailsData.people, 
+        dated: detailsData.dated, 
+        culture: detailsData.culture, 
+        classification: detailsData.classification, 
+        technique: detailsData.technique,
+        dimensions: detailsData.dimensions
+      })
     };
     init();
   }, []);
@@ -41,12 +54,12 @@ const Details = ({addToMyCollection}) => {
             <p><span>Classification:</span> {details.classification}</p>
             <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
             <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
-          </div> :
+          </div>
+          {loggedIn && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /></button>}
+          <Link to="/browse"><button>Back to the collection</button></Link>
         </div> :
         <p>Loading...</p>
       }
-      <button title="Add to my collection" onClick={() => addToMyCollection(details)}>+</button>
-      <Link to="/browse"><button>Back to the collection</button></Link>
 
     </div>
   );

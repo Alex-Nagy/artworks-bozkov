@@ -7,10 +7,20 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn }) => {
     <>
     <div className='artRecords'>
       { records.length ? 
-        records.map((record, index) => (
-          // const [primaryimageurl, title, people, dated, culture, classification, technique, dimensions] = record;
-          <Card key={index} record={record} addToMyCollection={() => addToMyCollection(record)} loggedIn={loggedIn} />
-        ))
+        records.map((record) => {
+          let savedDetails = {
+            id: record.id,
+            title: record.title,
+            primaryimageurl: record.primaryimageurl,
+            people: record.people, 
+            dated: record.dated, 
+            culture: record.culture, 
+            classification: record.classification, 
+            technique: record.technique,
+            dimensions: record.dimensions
+          }
+          return <Card key={record.id} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} />
+        })
         : 
         <p className='loading'>Loading...</p>
       }
