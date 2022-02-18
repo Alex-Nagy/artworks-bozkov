@@ -11,6 +11,7 @@ import Details from "./components/Details";
 import MyCollection from "./components/MyCollection";
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
+import Search from "./components/Search";
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -106,8 +107,11 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} />
-        <Routes>
+        <div className="stickyHeader">
+          <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} />
+          <Search />
+        </div>
+          <Routes>
           <Route path="/" element={<Homepage />} />
           <Route
             path="browse"
