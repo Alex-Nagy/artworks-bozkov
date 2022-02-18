@@ -92,6 +92,16 @@ section.home h1 {
   right: auto; */
   /* margin: 0 auto; */
 }
+section.home button {
+  border: 3px solid white;
+  background: none;
+  font-size: 2rem;
+  padding: .5em 3em;
+}
+section.home button:hover {
+  background:#22a2bd;
+  border-color: #22a2bd;
+}
 
 header {
   /* width: calc(100vw - 17px); */
@@ -194,12 +204,13 @@ button.loader {
 }
 
 .artItem img {
-  /* width: 80%; */
-  max-width: 240px;
-  max-height: 240px;
+  width: 80%;
+  height: 240px;
+  max-width: 360px;
+  max-height: 360px;
   border-radius: none;
-  margin: 0 0 1em 0;
-  object-fit: cover;
+  margin: 24px 0 12px 0;
+  object-fit: scale-down;
 }
 
 .artItem p {
@@ -207,6 +218,7 @@ button.loader {
   font-size: 14px;
   text-align: left;
   margin: 1em;
+  padding-right: 80px;
 }
 
 .artItem span.label {
