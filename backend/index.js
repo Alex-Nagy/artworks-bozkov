@@ -38,11 +38,12 @@ app.post("/api/mycollection", (req, res) => {
   if (!user) return res.sendStatus(401);
 
   if (!req.body.artwork) return res.sendStatus(400);
-  const artwork = req.body.artwork;
+  const artwork = {uuid: "", tags: [], ...req.body.artwork};
 
   user.mycollection.push(artwork);
   fs.writeFileSync("users.json", JSON.stringify(users, null, 4));
     // https://artwork-backend.herokuapp.com/upload  
+    // http://backend-bozkov.duckdns.org/artwork/
   res.json(user.mycollection);
 });
 

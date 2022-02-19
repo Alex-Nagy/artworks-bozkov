@@ -1,12 +1,201 @@
 [
     {
-        "name": "laszlo.fenyvesi@gmail.com",
-        "password": "123",
-        "mycollection": []
-    },
-    {
         "name": "fenyvesi.laszlo@pte.hu",
         "password": "123",
-        "mycollection": []
+        "mycollection": [
+            {
+                "id": 331829,
+                "title": "Untitled (Huntington Library Gardens and Monet)",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV213322_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": "Pasadena, California",
+                        "gender": "male",
+                        "displaydate": "born 1938",
+                        "prefix": null,
+                        "culture": "American",
+                        "displayname": "Bill Dane",
+                        "alphasort": "Dane, Bill",
+                        "name": "Bill Dane",
+                        "personid": 22059,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "1978-1981",
+                "culture": "American",
+                "classification": "Photographs",
+                "technique": "Gelatin silver print",
+                "dimensions": "sheet: 12.5 x 17.6 cm (4 15/16 x 6 15/16 in.)\r\nimage: 11.3 x 17 cm (4 7/16 x 6 11/16 in.)"
+            },
+            {
+                "uuid": "",
+                "id": 220683,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV031894_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 220682,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV031896_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 220681,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV028409_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 220683,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV031894_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 220681,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV028409_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 375188,
+                "title": "Untitled",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:LEG278541",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": "Bremerhaven, Germany",
+                        "gender": "unknown",
+                        "displaydate": "1894 - 1975",
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Bertha Günther",
+                        "alphasort": "Günther, Bertha",
+                        "name": "Bertha Günther",
+                        "personid": 69136,
+                        "deathplace": "\r\nSiegen, Germany",
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "c. 1920-1922",
+                "culture": null,
+                "classification": "(not assigned)",
+                "technique": null,
+                "dimensions": "17 × 12.3 cm (6 11/16 × 4 13/16 in.)"
+            }
+        ]
     }
 ]

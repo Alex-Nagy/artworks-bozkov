@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { getData } from "./api";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import http from "axios";
+import { getData } from "./api";
+import "./App.css";
 
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
@@ -11,30 +11,47 @@ import Details from "./components/Details";
 import MyCollection from "./components/MyCollection";
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
-import Search from "./components/Search";
+
+
+const cors = require("cors");
+// app.options("*", cors({ origin: 'http://localhost:8000', optionsSuccessStatus: 200 }));
+http.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
 
 function App() {
   const [records, setRecords] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
+  const [pages, setPages] = useState(1);
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const [authUser, setAuthUser] = useState("");
   const [authPassword, setAuthPassword] = useState("");
-
+  
   const [loggedIn, setLoggedIn] = useState(false);
-
-  // const [artwork, setArtwork] = useState({});
-  // const history = useNavigate();
+  
+  const [searchString, setSearchString] = useState("");
 
   useEffect(() => {
     const init = async () => {
-      const newRecords = await getData(pageNumber);
+      const newRecords = await getData(pageNumber, searchString);
+      setPages(newRecords.info.pages);
       setRecords([...records, ...newRecords.records]);
     };
     init();
   }, [pageNumber]);
+
+  const search = () => {
+    const init = async () => {
+      setRecords([])
+      setPageNumber(1);
+      const searchRecords = await getData(1, searchString);
+      setPages(searchRecords.info.pages);
+      setRecords([...searchRecords.records]);
+    };
+    if (searchString.length < 3) setSearchString("");
+    init();
+  };
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -48,19 +65,14 @@ function App() {
   const login = async () => {
     try {
       await http.post('http://localhost:4000/api/login', {
-
       }, {
         headers: {
           authorization: authUser + ':::' + authPassword
         }
       })
-      // alert('Successfully login')
-      //console.log("Betépve")
-      // setSectionToAppear("todos")
       localStorage.setItem('user', authUser)
       localStorage.setItem('password', authPassword)
       setLoggedIn(true);
-      // history.push('/mycollection');
     } catch (err) {
       alert('Wrong username or password');
     }
@@ -80,36 +92,52 @@ function App() {
   };
 
   const addToMyCollection = async (artwork) => {
-    console.log("Added to my collection");
-    // console.log(authUser);
+    // console.log("Added to my collection");
     try {
-      await http.post(
-        "http://localhost:4000/api/mycollection",
-        {
-          artwork: artwork,
-        },
-        {
-          headers: {
-            authorization: authUser + ":::" + authPassword,
-          },
-        }
-      );
-      alert("Artwork added");
-      //setTodo('')
-    } catch (err) {
-      alert("Ooops something went wrong");
-    }
-  };
+      const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
+      console.log(downloadedFile);
 
-  // console.log(records);
-  // console.log(authUser);
+      try {
+        await http.post('http://backend-bozkov.duckdns.org/artwork/upload',{
+          file: downloadedFile
+        }, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Access-Control-Allow-Origin': '*' 
+          }
+        }).then(data => {
+          console.log(data)
+          // try {
+          //   await http.post(
+          //     "http://localhost:4000/api/mycollection",
+          //     {
+          //       artwork: artwork
+          //     },
+          //     {
+          //       headers: {
+          //         authorization: authUser + ":::" + authPassword,
+          //       },
+          //     }
+          //     );
+          //     alert("Artwork added");
+          //   } catch (err) {
+          //     alert("File system error.");
+          //   }
+        })
+      } catch (err) {
+        alert("Upload error.");
+      }
+
+      } catch (err) {
+        alert("Ooops! Something went wrong");
+      }
+  };
 
   return (
     <div className="App">
       <BrowserRouter>
         <div className="stickyHeader">
-          <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} />
-          <Search />
+          <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} search={searchString} setSearch={setSearchString} />
         </div>
           <Routes>
           <Route path="/" element={<Homepage />} />
@@ -121,6 +149,11 @@ function App() {
                 onChange={increase}
                 addToMyCollection={addToMyCollection}
                 loggedIn={loggedIn}
+                searchString={searchString}
+                setSearchString={setSearchString}
+                search={search}
+                pageNumber={pageNumber}
+                pages={pages}
               />
             }
           />

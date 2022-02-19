@@ -1,9 +1,16 @@
 import React from 'react'
+import { MdImageSearch } from "react-icons/md";
 
-const Search = () => {
+const Search = ({searchString, setSearchString, search}) => {
   return (
     <div>
-        <input type="text" placeholder="search"/>
+      <form onSubmit={(e) => {
+          e.preventDefault();
+          search()
+        }}>
+        <input type="text" name="search" className="searchInput" placeholder="search" value={searchString} onChange={(e) => setSearchString(e.target.value)}/>
+        <button className="searchButton"><MdImageSearch /></button>
+        </form>
     </div>
   )
 }

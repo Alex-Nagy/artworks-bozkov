@@ -15,9 +15,6 @@ const Header = ({authUser, signOut, loggedIn}) => {
             <li><Link to='/' className='link'><button onClick={signOut} >Sign out</button></Link></li> :
             <li><Link to='signIn' className='link'><button>Sign In</button></Link></li>
           }
-          {/* {!authUser && 
-            <li><Link to='register' className='link'><button>Register</button></Link></li>
-          } */}
         </ul>
       </nav>
       {loggedIn && <p>logged in: <strong>{authUser}</strong></p>}

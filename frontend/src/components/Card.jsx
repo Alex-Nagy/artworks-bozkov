@@ -15,6 +15,7 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 	  }
   
 	return (
+		<>
 		<div key={record.id} className='artItem'>
 
 			<div>
@@ -29,7 +30,7 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 
 			<div>
 				{ record.people ?
-					record.people.map((artist) => <p key={artist.personid}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
+					record.people.map((artist, index) => <p key={index}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
 					<p>Unknown artist</p> 
 				} 
 				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
@@ -39,13 +40,14 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 				{loggedIn && <button title="Add to my collection" onClick={addToMyCollection}><HiOutlineSaveAs /></button>}
 			</div>
 
-			{itemToDisplay!==false &&
-				<div className="imageItem" onClick={itemClose}>
-            		<img src={record.primaryimageurl} alt={record.title}/>;
-        		</div>
-            	// <Picture onClick={itemClose} item={pixArray[itemToDisplay]} />
-	        }  			
 		</div>
+		{itemToDisplay !== false &&
+			<div className="imageItem" onClick={itemClose}>
+				<img src={record.primaryimageurl} alt={record.title}/>;
+			</div>
+			// <Picture onClick={itemClose} item={pixArray[itemToDisplay]} />
+		}
+		</>  			
 	);
 };
 

@@ -1,13 +1,15 @@
 import React from 'react'
 import Card from './Card';
+import Search from './Search';
 
-const Browse = ({ records, onChange, addToMyCollection, loggedIn }) => {
+const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages }) => {
 
   return (
     <>
+    <div className='search'><Search searchString={searchString} setSearchString={setSearchString} search={search} /></div>
     <div className='artRecords'>
       { records.length ? 
-        records.map((record) => {
+        records.map((record, index) => {
           let savedDetails = {
             id: record.id,
             title: record.title,
@@ -19,13 +21,13 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn }) => {
             technique: record.technique,
             dimensions: record.dimensions
           }
-          return <Card key={record.id} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} />
+          return <Card key={index} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} />
         })
         : 
         <p className='loading'>Loading...</p>
       }
     </div>
-    <button className='loader' onClick={onChange}>+</button>
+    { pageNumber < pages && <button className='loader' onClick={onChange}>load more...</button> }
     </>
   )
 }
