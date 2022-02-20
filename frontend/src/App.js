@@ -13,9 +13,12 @@ import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 
 
-const cors = require("cors");
+// const cors = require("cors");
 // app.options("*", cors({ origin: 'http://localhost:8000', optionsSuccessStatus: 200 }));
-http.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
+// http.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
+
+const myBackEndURL = "http://localhost:4000/api";
+const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -64,7 +67,7 @@ function App() {
 
   const login = async () => {
     try {
-      await http.post('http://localhost:4000/api/login', {
+      await http.post(myBackEndURL+'/login', {
       }, {
         headers: {
           authorization: authUser + ':::' + authPassword
@@ -77,6 +80,38 @@ function App() {
       alert('Wrong username or password');
     }
   };
+
+  const register = async (e) => {
+    e.preventDefault();
+    try {
+      await http.post(myBackEndURL+'/signup', {
+        name: name,
+        password: password
+      })
+      alert("Successfull registration");
+
+      localStorage.setItem('user', name);
+      localStorage.setItem('password', password);
+      setName("");
+      setPassword("");
+    } catch (err) {
+      if (err.response) {
+        switch (err.response.status) {
+          case 409:
+            alert("Oooops. Conflict. User already exists.");
+            break;
+          case 400:
+            alert("Oooops. Missing credentials.");
+            break;
+          default:
+            alert("Oooops. Something went wrong");
+            break;
+        }
+      } else {
+        alert("Oooops.");
+      }
+    }
+  }
 
   const signOut = () => {
     localStorage.removeItem('user', authUser)
@@ -96,9 +131,9 @@ function App() {
     try {
       const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
       console.log(downloadedFile);
-
+/*
       try {
-        await http.post('http://backend-bozkov.duckdns.org/artwork/upload',{
+        await http.post(farBackEndURL+'/upload',{
           file: downloadedFile
         }, {
           headers: {
@@ -109,7 +144,7 @@ function App() {
           console.log(data)
           // try {
           //   await http.post(
-          //     "http://localhost:4000/api/mycollection",
+          //     myBackEndURL+"/mycollection",
           //     {
           //       artwork: artwork
           //     },
@@ -127,6 +162,23 @@ function App() {
       } catch (err) {
         alert("Upload error.");
       }
+*/
+      try {
+        await http.post(
+          myBackEndURL+"/mycollection",
+          {
+            artwork: artwork
+          },
+          {
+            headers: {
+              authorization: authUser + ":::" + authPassword,
+            },
+          }
+          );
+          alert("Artwork added");
+        } catch (err) {
+          alert("File system error.");
+        }
 
       } catch (err) {
         alert("Ooops! Something went wrong");
@@ -161,7 +213,7 @@ function App() {
             path="details/:id"
             element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} />}
           />
-          <Route path="myCollection" element={<MyCollection />} />
+          <Route path="myCollection" element={<MyCollection authUser={authUser} authPassword={authPassword} myBackEndURL={myBackEndURL} loggedIn={loggedIn} />} />
           <Route
             path="signIn"
             element={
@@ -184,6 +236,7 @@ function App() {
                 setName={setName}
                 setPassword={setPassword}
                 setLoggedIn={setLoggedIn}
+                register={register}
               />
             }
           />

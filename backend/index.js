@@ -42,8 +42,6 @@ app.post("/api/mycollection", (req, res) => {
 
   user.mycollection.push(artwork);
   fs.writeFileSync("users.json", JSON.stringify(users, null, 4));
-    // https://artwork-backend.herokuapp.com/upload  
-    // http://backend-bozkov.duckdns.org/artwork/
   res.json(user.mycollection);
 });
 

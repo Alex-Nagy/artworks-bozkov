@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useeEffect, useEffect } from 'react'
 import http from 'axios';
+import MyCard from './MyCard';
 
-const MyCollection = ({authUser, authPassword }) => {
+const MyCollection = ({ authUser, authPassword, myBackEndURL, loggedIn }) => {
 
-  const [details, setDetails] = useState(null);
+  const [collection, setCollection] = useState(null);
     
   const fetchCollected = async(artwork) => {
-   const response = await http.get("http://localhost:4000/api/mycollection", {
-      artwork: artwork,
-    },
+   const response = await http.get(myBackEndURL+"/mycollection", 
     {
       headers: {
         authorization: authUser + ":::" + authPassword,
@@ -17,35 +16,25 @@ const MyCollection = ({authUser, authPassword }) => {
     const data = await response
     console.log(data);  // 401 Unauthorized ??
 
-    setDetails(data)
+    setCollection(data.data)
   }
-  fetchCollected()
+
+  useEffect(() => {
+    fetchCollected()
+  }, [])
   
   return (
-    <div>
+    <section className="myCollection">
       <h1>My Collection</h1>
-      { details ? 
-        <div>
-          { details.primaryimageurl ? 
-            <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
-            <img alt='not available' className='noImageInDetails' /> 
-				  }
-          <div className='objectDetails'>
-            <p><span>Title:</span> {details.title}</p>
-            { details.people ?
-              details.people.map((artist) => <p key={artist.personid}><span>{artist.role}:</span> {artist.name}</p>) : 
-              <p>Unknown artist</p> 
-            } 
-            <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
-            <p><span>Culture:</span> {details.culture}</p>
-            <p><span>Classification:</span> {details.classification}</p>
-            <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
-            <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
-          </div> :
-        </div> :
+      <div className='artRecords'>
+      { collection ?
+        collection.map((collectionItem, index) => (
+          <MyCard key={index} record={collectionItem} loggedIn={loggedIn} />
+        )) :
         <p>Loading...</p>
       }
-    </div>
+      </div>
+    </section>
   )
 }
 

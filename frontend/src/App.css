@@ -62,7 +62,7 @@ body, html {
 
 div.stickyHeader {
   width: 100%;
-  /* position: sticky; */
+  position: sticky;
   top: 0;
   z-index: 999;
 }
@@ -126,14 +126,14 @@ section.home h1 {
   color: var(--white-text);
 }
 
-section.home button {
+section.home button, section.login button, section.register button {
   border: 3px solid;
   border-color: var(--white-text);
   background: none;
   font-size: 2rem;
   padding: .5em 3em;
 }
-section.home button:hover {
+section.home button:hover, section.login button:hover, section.register button:hover {
   background: var(--blue-text);
   border-color: var(--blue-text);
 }
@@ -322,4 +322,7 @@ input.searchInput {
 button.searchButton {
   margin-left: 0;
   /* font-size: 20px; */
+}
+h2.ifYou {
+  margin-top: 160px;
 }
