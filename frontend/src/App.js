@@ -12,10 +12,8 @@ import MyCollection from "./components/MyCollection";
 import LogIn from "./components/LogIn";
 import Register from "./components/Register";
 
+const FormData = require("form-data");
 
-// const cors = require("cors");
-// app.options("*", cors({ origin: 'http://localhost:8000', optionsSuccessStatus: 200 }));
-// http.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
 
 const myBackEndURL = "http://localhost:4000/api";
 // const farBackEndURL = "http://3.71.188.86/artwork";
@@ -129,15 +127,15 @@ function App() {
     setPageNumber(pageNumber + 1);
   };
 
-  const addToMyCollection = async (artwork) => {
+  const _addToMyCollection = async (artwork) => {
     // console.log("Added to my collection");
     try {
       const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
-      console.log(downloadedFile);
+      console.log(downloadedFile.data);
 
       try {
         await http.post(farBackEndURL+'/upload',{
-          file: downloadedFile
+          file: downloadedFile.data
         }, {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -166,26 +164,56 @@ function App() {
         console.log(err);
         alert("Upload error.");
       }
-
-      // try {
-      //   await http.post(
-      //     myBackEndURL+"/mycollection",
-      //     {
-      //       artwork: artwork
-      //     },
-      //     {
-      //       headers: {
-      //         authorization: authUser + ":::" + authPassword,
-      //       },
-      //     }
-      //     );
-      //     alert("Artwork added");
-      //   } catch (err) {
-      //     alert("File system error.");
-      //   }
-
     } catch (err) {
       alert("Ooops! Something went wrong");
+    }
+  };
+
+  const addToMyCollection = async (artwork) => {
+    let uuid = false;
+    try {
+      const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
+      try {
+        let fileToUpload = new FormData();
+        fileToUpload.append("file", downloadedFile.data);
+        await http.post(
+          farBackEndURL+'/upload',
+          fileToUpload,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              'Access-Control-Allow-Origin': '*' 
+            },
+          }
+        ).then(data => {
+          uuid = data.data.uuid;
+        })
+      } catch (err) {
+        console.log(err);
+        alert("Upload error.");
+      }
+    } catch (err) {
+      alert("Ooops! Something went wrong");
+    }
+
+    if (uuid) {
+      artwork.uuid = uuid;
+      try {
+        await http.post(
+          myBackEndURL+"/mycollection",
+          {
+            artwork: artwork
+          },
+          {
+            headers: {
+              authorization: authUser + ":::" + authPassword,
+            },
+          }
+          );
+          alert("Artwork added");
+        } catch (err) {
+          alert("File system error.");
+        }
     }
   };
 
@@ -217,7 +245,7 @@ function App() {
             path="details/:id"
             element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} />}
           />
-          <Route path="myCollection" element={<MyCollection authUser={authUser} authPassword={authPassword} myBackEndURL={myBackEndURL} loggedIn={loggedIn} />} />
+          <Route path="myCollection" element={<MyCollection authUser={authUser} authPassword={authPassword} myBackEndURL={myBackEndURL} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />} />
           <Route
             path="signIn"
             element={

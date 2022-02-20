@@ -4,7 +4,7 @@ import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { CgDetailsMore } from "react-icons/cg";
 
-const MyCard = ({ record, loggedIn }) => {
+const MyCard = ({ record, loggedIn, farBackEndURL }) => {
     const [ itemToDisplay, setItemToDisplay ] = useState(false);
 	// const [ tagTitle, setTagTitle ] = useState("");
 
@@ -14,7 +14,7 @@ const MyCard = ({ record, loggedIn }) => {
 	  const itemClose = () => {
 		setItemToDisplay(false);
 	  }
-  
+	console.log(farBackEndURL + '/files/download/' + record.uuid);
 	return (
 		<>
 		<div key={record.id} className='artItem'>
@@ -22,7 +22,7 @@ const MyCard = ({ record, loggedIn }) => {
 			<div>
 				{/* <Link to={`/details/${record.id}`}> */}
 				{ record.primaryimageurl ? 
-					<img src={record.primaryimageurl} alt={record.title} onClick={() => showPicture(record.primaryimageurl)} /> : 
+					<img src={farBackEndURL + '/files/download/' + record.uuid} alt={record.title} onClick={() => showPicture(farBackEndURL + '/files/download/' + record.uuid)} /> : 
 					<img src={noImage} alt='not available' /> 
 				}
 				{/* </Link> */}

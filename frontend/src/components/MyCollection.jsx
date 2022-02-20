@@ -2,7 +2,7 @@ import React, { useState, useeEffect, useEffect } from 'react'
 import http from 'axios';
 import MyCard from './MyCard';
 
-const MyCollection = ({ authUser, authPassword, myBackEndURL, loggedIn }) => {
+const MyCollection = ({ authUser, authPassword, myBackEndURL, farBackEndURL, loggedIn }) => {
 
   const [collection, setCollection] = useState(null);
     
@@ -29,7 +29,7 @@ const MyCollection = ({ authUser, authPassword, myBackEndURL, loggedIn }) => {
       <div className='artRecords'>
       { collection ?
         collection.map((collectionItem, index) => (
-          <MyCard key={index} record={collectionItem} loggedIn={loggedIn} />
+          <MyCard key={index} record={collectionItem} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />
         )) :
         <p>Loading...</p>
       }
