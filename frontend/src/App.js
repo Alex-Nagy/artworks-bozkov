@@ -18,7 +18,9 @@ import Register from "./components/Register";
 // http.use(cors({ origin: "http://localhost:3000", optionsSuccessStatus: 200 }));
 
 const myBackEndURL = "http://localhost:4000/api";
-const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
+// const farBackEndURL = "http://3.71.188.86/artwork";
+const farBackEndURL = "https://artwork-backend.herokuapp.com";
+// const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -132,7 +134,7 @@ function App() {
     try {
       const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
       console.log(downloadedFile);
-/*
+
       try {
         await http.post(farBackEndURL+'/upload',{
           file: downloadedFile
@@ -161,29 +163,30 @@ function App() {
           //   }
         })
       } catch (err) {
+        console.log(err);
         alert("Upload error.");
       }
-*/
-      try {
-        await http.post(
-          myBackEndURL+"/mycollection",
-          {
-            artwork: artwork
-          },
-          {
-            headers: {
-              authorization: authUser + ":::" + authPassword,
-            },
-          }
-          );
-          alert("Artwork added");
-        } catch (err) {
-          alert("File system error.");
-        }
 
-      } catch (err) {
-        alert("Ooops! Something went wrong");
-      }
+      // try {
+      //   await http.post(
+      //     myBackEndURL+"/mycollection",
+      //     {
+      //       artwork: artwork
+      //     },
+      //     {
+      //       headers: {
+      //         authorization: authUser + ":::" + authPassword,
+      //       },
+      //     }
+      //     );
+      //     alert("Artwork added");
+      //   } catch (err) {
+      //     alert("File system error.");
+      //   }
+
+    } catch (err) {
+      alert("Ooops! Something went wrong");
+    }
   };
 
   return (
