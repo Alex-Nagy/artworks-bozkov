@@ -34,6 +34,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   
   const [searchString, setSearchString] = useState("");
+  // const [tagTitle, setTagTitle] = useState("");
 
   useEffect(() => {
     const init = async () => {

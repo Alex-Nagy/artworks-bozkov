@@ -70,6 +70,46 @@
                 "classification": "Plaques",
                 "technique": "Electrotype",
                 "dimensions": "6.1 x 4.4 cm (2 3/8 x 1 3/4 in.)"
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 220683,
+                "title": "Untitled [Goldberg architecture]",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV031894_dynmc",
+                "people": [
+                    {
+                        "role": "Artist",
+                        "birthplace": null,
+                        "gender": "unknown",
+                        "displaydate": null,
+                        "prefix": null,
+                        "culture": null,
+                        "displayname": "Unidentified Artist",
+                        "alphasort": "Unidentified Artist",
+                        "name": "Unidentified Artist",
+                        "personid": 34147,
+                        "deathplace": null,
+                        "displayorder": 1
+                    }
+                ],
+                "dated": "20th century",
+                "culture": "German?",
+                "classification": "Photographs",
+                "technique": null,
+                "dimensions": null
+            },
+            {
+                "uuid": "",
+                "tags": [],
+                "id": 330740,
+                "title": "Shrinathji in a Shrine Flanked by Worshipers",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:DDC110756_dynmc",
+                "dated": "19th century",
+                "culture": "Indian",
+                "classification": "Paintings",
+                "technique": null,
+                "dimensions": "18.4 x 13.9 cm (7 1/4 x 5 1/2 in.)"
             }
         ]
     },

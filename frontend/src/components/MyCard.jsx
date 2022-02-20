@@ -6,6 +6,7 @@ import { CgDetailsMore } from "react-icons/cg";
 
 const MyCard = ({ record, loggedIn }) => {
     const [ itemToDisplay, setItemToDisplay ] = useState(false);
+	// const [ tagTitle, setTagTitle ] = useState("");
 
     const showPicture = (e) => {
 		setItemToDisplay(e);
@@ -35,10 +36,20 @@ const MyCard = ({ record, loggedIn }) => {
 				} 
 				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
 			</div>
+			<div>
+				{/* <p><span className="label">Tag(s):</span></p> */}
+				{ record.tags ?
+					record.tags.map((tag, index) => <span key={index}>{tag.title}</span>) : 
+					<p></p> 
+				}
+			</div>
 			<div className="actions">
 				<Link to={`/details/${record.id}`}><button title="details"><CgDetailsMore /></button></Link>
+				{/* <div className="addTagDiv">
+					<input type="text" className="addTagTitle" value={tagTitle} placeholder="add new tag" onChange={(e) => setTagTitle(e.target.value)} />
+				</div>
+				<button className="addTagButton">+</button> */}
 			</div>
-
 		</div>
 		{itemToDisplay !== false &&
 			<div className="imageItem" onClick={itemClose}>

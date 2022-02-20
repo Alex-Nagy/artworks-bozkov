@@ -93,13 +93,11 @@ header p {
 
 header input.search {
   padding: .25em;
-  /* background-color: var(--blue-text); */
   border: 1px solid white;
   background: none;
   color: white;
-  /* font-size: 12px; */
-  /* width: 241px; */
 }
+
 nav button {
   background-color: var(--main-bg-color);
   color: white;
@@ -117,6 +115,7 @@ section.home {
   background-image: url('./img/pexels-una-laurencic-20967.jpg');
   background-size: cover;
 }
+
 section.home img {
   width: 100%;
   object-fit: cover;
@@ -133,6 +132,7 @@ section.home button, section.login button, section.register button {
   font-size: 2rem;
   padding: .5em 3em;
 }
+
 section.home button:hover, section.login button:hover, section.register button:hover {
   background: var(--blue-text);
   border-color: var(--blue-text);
@@ -162,16 +162,13 @@ button.loader {
 .artRecords {
   width: 80vw;
   margin: 2em auto;
-  position: relative;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 24px;
 }
 
 .artItem {
-  position: relative;
   padding: .5em;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -188,7 +185,6 @@ button.loader {
 
 .artItem button {
   padding: 10px 15px;
-
   font-size: 36px;
   font-weight: 900;
   margin: 0;
@@ -312,6 +308,7 @@ section h1 {
   padding: 1rem;
   background-color: var(--white-text);
 }
+
 .imageItem img:hover {
   cursor: pointer;
 }
@@ -319,10 +316,39 @@ section h1 {
 input.searchInput {
   margin-right: 0;
 }
+
 button.searchButton {
   margin-left: 0;
-  /* font-size: 20px; */
 }
+
 h2.ifYou {
   margin-top: 160px;
+  font-size: 24px;
+  color: var(--white-text);
+}
+
+div.addTagDiv {
+  /* width: 100%; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* padding: .5em; */
+}
+span.addTagLabel {
+
+}
+input.addTagTitle {
+  display: inline;
+  width: 100%;
+  padding: 3px;
+  margin: 0;
+}
+input.addTagTitle::placeholder {
+  font-weight: 100;
+  font-size: 16px;
+}
+button.addTagButton {
+  /* display: inline;
+  margin: 0;
+  padding: 0; */
 }
