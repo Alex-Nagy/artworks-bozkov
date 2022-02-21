@@ -1,50 +1,43 @@
 import React, { useState } from 'react';
-import http from 'axios';
 
 const Register = ({ name, password, setName, setPassword, setLoggedIn, register }) => {
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errorMessages = errors;
+
+    const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
   
-  // const register = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await http.post('http://localhost:4000/api/signup', {
-  //       name: name,
-  //       password: password
-  //     })
-  //     alert("Successfull registration");
-
-  //     localStorage.setItem('user', name);
-  //     localStorage.setItem('password', password);
-  //     // setLoggedIn(true);
-  //     setName("");
-  //     setPassword("");
-  //     // setLoggedIn(true);
-  //     // window.history.push("/collection");
-  //     // setSection("login");
-  //   } catch (err) {
-  //     if (err.response) {
-  //       switch (err.response.status) {
-  //         case 409:
-  //           alert("Oooops. Conflict. User already exists.");
-  //           break;
-  //         case 400:
-  //           alert("Oooops. Missing credentials.");
-  //           break;
-  //         default:
-  //           alert("Oooops. Something went wrong");
-  //           break;
-  //       }
-  //     } else {
-  //       alert("Oooops.");
-  //     }
-  //   }
-  // }
-
+    switch (name) {
+      case 'password': 
+        errorMessages.password = value.length >= 6 ? '' : 'The password must be at least 6 characters long!';
+        break;
+      case 'email': 
+        errorMessages.email = regex.test(value) ? '' : 'Invalid e-mail address!';
+        break;
+      default:
+        break;
+    }
+    setErrors({errorMessages, [name]: value})
+  }
+  console.log(errors);
   return (
     <section className="register">
         <h1>Registration</h1>
         <form onSubmit={(e) => register(e)}>
-        <input name="email" type="email" onChange={(e) => setName(e.target.value)} value={name} placeholder="email" required />
-        <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="password" required />
+        <input name="email" type="email" onChange={(e) => {
+          setName(e.target.value)
+          // handleChange(e)
+        }} value={name} placeholder="email" required />
+        {errors.email && errors.email.length > 0 && <span className='error'>{errors.email}</span>}
+        <input name="password" type="password" onChange={(e) => {
+          setPassword(e.target.value)
+          // handleChange(e)
+        }} value={password} placeholder="password" required />
+        {errors.password && errors.password.length > 0 && <span className='error'>{errors.password}</span>}
         <button>Register</button>
         </form>
     </section>
