@@ -45,6 +45,22 @@ function App() {
     init();
   }, [pageNumber]);
 
+  useEffect(() => {
+    const sessionId = localStorage.getItem('sessionId');
+    if (!sessionId) return
+    setLoggedIn(true);
+    //Itt átirányít a Browse artworks-re.
+  }, [])
+
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   const password = localStorage.getItem("password");
+  //   if (!user || !password) return;
+  //   setAuthUser(user);
+  //   setAuthPassword(password);
+  //   setLoggedIn(true);
+  // }, []);
+
   const search = () => {
     const init = async () => {
       setRecords([])
@@ -57,28 +73,18 @@ function App() {
     init();
   };
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    const password = localStorage.getItem("password");
-    if (!user || !password) return;
-    setAuthUser(user);
-    setAuthPassword(password);
-    setLoggedIn(true);
-  }, []);
-
   const login = async () => {
     try {
-      await http.post(myBackEndURL+'/login', {
+      const response = await http.post(myBackEndURL+'/login', {
       }, {
         headers: {
           authorization: authUser + ':::' + authPassword
         }
       })
-      localStorage.setItem('user', authUser)
-      localStorage.setItem('password', authPassword)
+      localStorage.setItem('sessionId', response.data);
       setLoggedIn(true);
     } catch (err) {
-      alert('Wrong username or password');
+      return alert('Wrong username or password');
     }
   };
 
@@ -91,36 +97,35 @@ function App() {
       })
       alert("Successfull registration");
 
-      localStorage.setItem('user', name);
-      localStorage.setItem('password', password);
       setName("");
       setPassword("");
+      //Átirányítani a signIn-re.
     } catch (err) {
-      if (err.response) {
-        switch (err.response.status) {
-          case 409:
-            alert("Oooops. Conflict. User already exists.");
-            break;
-          case 400:
-            alert("Oooops. Missing credentials.");
-            break;
-          default:
-            alert("Oooops. Something went wrong");
-            break;
-        }
-      } else {
-        alert("Oooops.");
+      if (!err.response) return alert('Ooops...Something went wrong')
+      if (err.response.status === 409) {
+        alert('User already exist')
+      }
+
+      if (err.response.status === 400) {
+        alert('Missing credentials')
       }
     }
   }
 
-  const signOut = () => {
-    localStorage.removeItem('user', authUser)
-    localStorage.removeItem('password', authPassword)
-
-    setAuthUser('');
-    setAuthPassword('');
-    setLoggedIn(false);
+  const signOut = async() => {
+    try {
+      await http.delete('http://localhost:4000/api/logout', {
+        headers: {
+          authorization: localStorage.getItem("sessionId"),
+        },
+      }, {});
+    } catch (err) {
+    } finally {
+      localStorage.removeItem('sessionId');
+      setAuthUser('')
+      setAuthPassword('')
+      setLoggedIn(false);
+    }
   }
 
   const increase = async () => {
