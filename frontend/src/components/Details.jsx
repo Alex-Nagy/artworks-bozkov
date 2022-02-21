@@ -56,7 +56,8 @@ const Details = ({addToMyCollection, loggedIn}) => {
             <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
           </div>
           {loggedIn && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /></button>}
-          <Link to="/browse"><button>Back to the collection</button></Link>
+          {/* <Link to="/browse"><button>Back to the collection</button></Link> */}
+          <button onClick={() => window.history.back()}>Back to the collection</button>
         </div> :
         <p>Loading...</p>
       }
