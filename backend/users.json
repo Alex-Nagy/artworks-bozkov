@@ -197,5 +197,77 @@
         "name": "bigfartengine@yahoo.com",
         "password": "234",
         "mycollection": []
+    },
+    {
+        "name": "adc@gmail.com",
+        "password": "valami",
+        "mycollection": [
+            {
+                "uuid": "b960b44c-0138-440f-b5dc-d69dcf9c018c",
+                "tags": [],
+                "id": 1432,
+                "title": "Two Standing Boars",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
+                "dated": "first half 8th century",
+                "culture": "Chinese",
+                "classification": "Sculpture",
+                "technique": null,
+                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
+            },
+            {
+                "uuid": "21c751b1-adbe-423e-a21e-4352e688411e",
+                "tags": [],
+                "id": 1432,
+                "title": "Two Standing Boars",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
+                "dated": "first half 8th century",
+                "culture": "Chinese",
+                "classification": "Sculpture",
+                "technique": null,
+                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
+            },
+            {
+                "uuid": "cd6c9dd6-682f-4475-ac21-5bb27b4ea491",
+                "tags": [],
+                "id": 1432,
+                "title": "Two Standing Boars",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
+                "dated": "first half 8th century",
+                "culture": "Chinese",
+                "classification": "Sculpture",
+                "technique": null,
+                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
+            }
+        ]
+    },
+    {
+        "name": "user1@gmail.com",
+        "password": "user1",
+        "mycollection": []
+    },
+    {
+        "name": "user2@gmail.com",
+        "password": "user2",
+        "mycollection": []
+    },
+    {
+        "name": "user3@gmail.com",
+        "password": "user3",
+        "mycollection": []
+    },
+    {
+        "name": "user4@gmail.com",
+        "password": "user4",
+        "mycollection": []
+    },
+    {
+        "name": "user5@gmail.com",
+        "password": "user5",
+        "mycollection": []
+    },
+    {
+        "name": "user6@gmail.com",
+        "password": "user6",
+        "mycollection": []
     }
 ]
