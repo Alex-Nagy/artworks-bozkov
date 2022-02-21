@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import http from 'axios';
 import MyCard from './MyCard';
+import Spinner from '../img/Spinner.gif';
 
 const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
 
@@ -31,7 +32,7 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
         collection.map((collectionItem, index) => (
           <MyCard key={index} record={collectionItem} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />
         )) :
-        <p>Loading...</p>
+        <img src={Spinner} alt="Loading..." className='spinner'/>
       }
       </div>
     </section>
