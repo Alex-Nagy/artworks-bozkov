@@ -75,7 +75,8 @@ function App() {
     init();
   };
 
-  const login = async () => {
+  const login = async (e) => {
+    e.preventDefault();
     try {
       const response = await http.post(myBackEndURL+'/login', {
       }, {
@@ -183,8 +184,6 @@ function App() {
     }
   };
 
-  console.log(authUser);
-  
   return (
     // <div className="App">
     <>

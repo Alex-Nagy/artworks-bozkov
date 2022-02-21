@@ -17,7 +17,7 @@ const Header = ({authUser, signOut, loggedIn}) => {
           }
         </ul>
       </nav>
-      {loggedIn && <p>logged in: <strong>{authUser}</strong></p>}
+      {loggedIn && <p>{authUser}</p>}
     </header>
   );
 };

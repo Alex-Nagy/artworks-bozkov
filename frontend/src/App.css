@@ -89,9 +89,9 @@ header h1 {
 header p {
   position: absolute;
   right: 12px;
-  top: 100px;
-  color: var(--black-text);
-  background-color: var(--blue-text);
+  top: 74px;
+  color: var(--blue-text);
+  /* background-color: var(--blue-text); */
 }
 
 header input.search {
@@ -305,8 +305,8 @@ section h1 {
   align-items: center;
 
   overflow: auto;
-  background-color: rgba(79, 15, 82, 0.85);
-
+  background-color: rgba(65, 106, 158, 0.85);
+  /* background-color: rgba(79, 15, 82, 0.85); */
 }
 
 .imageItem img {
