@@ -218,7 +218,8 @@ function App() {
   };
 
   return (
-    <div className="App">
+    // <div className="App">
+    <>
       <BrowserRouter>
         <div className="stickyHeader">
           <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} search={searchString} setSearch={setSearchString} />
@@ -274,7 +275,8 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
-    </div>
+    {/* </div> */}
+    </>
   );
 }
 
