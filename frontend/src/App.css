@@ -364,3 +364,12 @@ button.addTagButton {
   margin: 0;
   padding: 0; */
 }
+
+.spinner{
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+}

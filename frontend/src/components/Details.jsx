@@ -3,6 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
+import Spinner from '../img/Spinner.gif';
+
 
 const Details = ({addToMyCollection, loggedIn}) => {
 
@@ -59,7 +61,8 @@ const Details = ({addToMyCollection, loggedIn}) => {
           {/* <Link to="/browse"><button>Back to the collection</button></Link> */}
           <button onClick={() => window.history.back()}>Back to the collection</button>
         </div> :
-        <p>Loading...</p>
+          <img src={Spinner} alt="Loading..." className='spinner'/>
+
       }
 
     </div>

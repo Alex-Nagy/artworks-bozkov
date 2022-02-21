@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Card from './Card';
 import Search from './Search';
+import Spinner from '../img/Spinner.gif';
 
 const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages }) => {
   const [ itemToDisplay, setItemToDisplay ] = useState(false);
@@ -34,7 +35,7 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, 
           return <Card key={index} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} itemToDisplay={itemToDisplay} setItemToDisplay={setItemToDisplay} />
         })
         : 
-        <p className='loading'>Loading...</p>
+        <img src={Spinner} alt="Loading..." className='spinner'/>
       }
     </div>
     { pageNumber < pages && <button className='loader' onClick={onChange}>load more...</button> }
