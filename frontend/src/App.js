@@ -15,8 +15,8 @@ import Register from "./components/Register";
 const FormData = require("form-data");
 
 
-// const myBackEndURL = "http://localhost:4000/api";
-const myBackEndURL = "http://frontend-bozkov.duckdns.org/api";
+const myBackEndURL = "http://localhost:4000/api";
+// const myBackEndURL = "http://api-bozkov.duckdns.org/";
 // const farBackEndURL = "http://3.71.188.86/artwork";
 const farBackEndURL = "https://artwork-backend.herokuapp.com";
 // const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
@@ -119,7 +119,7 @@ function App() {
 
   const signOut = async() => {
     try {
-      await http.delete('http://localhost:4000/api/logout', {
+      await http.delete(myBackEndURL+'/api/logout', {
         headers: {
           authorization: localStorage.getItem("sessionId"),
         },
