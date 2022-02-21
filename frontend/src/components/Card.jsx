@@ -4,15 +4,15 @@ import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { CgDetailsMore } from "react-icons/cg";
 
-const Card = ({ record, addToMyCollection, loggedIn }) => {
-    const [ itemToDisplay, setItemToDisplay ] = useState(false);
+const Card = ({ record, addToMyCollection, loggedIn, itemToDisplay, setItemToDisplay }) => {
+    // const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
-    const showPicture = (e) => {
-		setItemToDisplay(e);
-	  }
-	  const itemClose = () => {
-		setItemToDisplay(false);
-	  }
+    // const showPicture = (e) => {
+		// setItemToDisplay(e);
+	  // }
+	  // const itemClose = () => {
+		// setItemToDisplay(false);
+	  // }
   
 	return (
 		<>
@@ -21,7 +21,7 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 			<div>
 				{/* <Link to={`/details/${record.id}`}> */}
 				{ record.primaryimageurl ? 
-					<img src={record.primaryimageurl} alt={record.title} onClick={() => showPicture(record.primaryimageurl)} /> : 
+					<img src={record.primaryimageurl} alt={record.title} onClick={() => setItemToDisplay(record.primaryimageurl)} /> : 
 					<img src={noImage} alt='not available' /> 
 				}
 				{/* </Link> */}
@@ -41,12 +41,11 @@ const Card = ({ record, addToMyCollection, loggedIn }) => {
 			</div>
 
 		</div>
-		{itemToDisplay !== false &&
+		{/* {itemToDisplay !== false &&
 			<div className="imageItem" onClick={itemClose}>
 				<img src={record.primaryimageurl} alt={record.title}/>;
 			</div>
-			// <Picture onClick={itemClose} item={pixArray[itemToDisplay]} />
-		}
+		} */}
 		</>  			
 	);
 };
