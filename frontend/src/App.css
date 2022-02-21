@@ -91,6 +91,7 @@ header p {
   right: 12px;
   top: 100px;
   color: var(--black-text);
+  background-color: var(--blue-text);
 }
 
 header input.search {

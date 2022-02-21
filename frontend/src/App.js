@@ -47,7 +47,9 @@ function App() {
 
   useEffect(() => {
     const sessionId = localStorage.getItem('sessionId');
-    if (!sessionId) return
+    const user = localStorage.getItem("user");
+    if (!sessionId || !user) return
+    setAuthUser(user);
     setLoggedIn(true);
     //Itt átirányít a Browse artworks-re.
   }, [])
@@ -82,6 +84,7 @@ function App() {
         }
       })
       localStorage.setItem('sessionId', response.data);
+      localStorage.setItem('user', authUser);
       setLoggedIn(true);
     } catch (err) {
       return alert('Wrong username or password');
@@ -132,48 +135,6 @@ function App() {
     setPageNumber(pageNumber + 1);
   };
 
-  const _addToMyCollection = async (artwork) => {
-    // console.log("Added to my collection");
-    try {
-      const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
-      console.log(downloadedFile.data);
-
-      try {
-        await http.post(farBackEndURL+'/upload',{
-          file: downloadedFile.data
-        }, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            'Access-Control-Allow-Origin': '*' 
-          }
-        }).then(data => {
-          console.log(data)
-          // try {
-          //   await http.post(
-          //     myBackEndURL+"/mycollection",
-          //     {
-          //       artwork: artwork
-          //     },
-          //     {
-          //       headers: {
-          //         authorization: authUser + ":::" + authPassword,
-          //       },
-          //     }
-          //     );
-          //     alert("Artwork added");
-          //   } catch (err) {
-          //     alert("File system error.");
-          //   }
-        })
-      } catch (err) {
-        console.log(err);
-        alert("Upload error.");
-      }
-    } catch (err) {
-      alert("Ooops! Something went wrong");
-    }
-  };
-
   const addToMyCollection = async (artwork) => {
     let uuid = false;
     try {
@@ -211,7 +172,7 @@ function App() {
           },
           {
             headers: {
-              authorization: authUser + ":::" + authPassword,
+              authorization: localStorage.getItem("sessionId"),
             },
           }
           );
@@ -222,6 +183,8 @@ function App() {
     }
   };
 
+  console.log(authUser);
+  
   return (
     // <div className="App">
     <>
@@ -251,7 +214,7 @@ function App() {
             path="details/:id"
             element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} />}
           />
-          <Route path="myCollection" element={<MyCollection authUser={authUser} authPassword={authPassword} myBackEndURL={myBackEndURL} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />} />
+          <Route path="myCollection" element={<MyCollection authUser={authUser} myBackEndURL={myBackEndURL} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />} />
           <Route
             path="signIn"
             element={

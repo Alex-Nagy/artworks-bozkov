@@ -63,7 +63,7 @@ app.post("/api/login", (req, res) => {
   if (!user) return res.sendStatus(401);
   const sessionId = Math.random().toString();
   mySessionStorage[sessionId] = user;
-  console.log(mySessionStorage);
+  // console.log(mySessionStorage);
 
   // setTimeout(() => {
   //   console.log("Session end.")
@@ -74,12 +74,12 @@ app.post("/api/login", (req, res) => {
 });
 
 app.delete("/api/logout", (req, res) => {
-  console.log(req.headers);
+  // console.log(req.headers);
   const sessionId = req.header('authorization');
-  console.log(sessionId);
+  // console.log(sessionId);
   if(!sessionId) return res.sendStatus(401);
   delete mySessionStorage[sessionId];
-  console.log(mySessionStorage);
+  // console.log(mySessionStorage);
   res.sendStatus(200);
 })
 

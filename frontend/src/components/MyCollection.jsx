@@ -1,8 +1,8 @@
-import React, { useState, useeEffect, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import http from 'axios';
 import MyCard from './MyCard';
 
-const MyCollection = ({ authUser, authPassword, myBackEndURL, farBackEndURL, loggedIn }) => {
+const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
 
   const [collection, setCollection] = useState(null);
     
@@ -10,7 +10,7 @@ const MyCollection = ({ authUser, authPassword, myBackEndURL, farBackEndURL, log
    const response = await http.get(myBackEndURL+"/mycollection", 
     {
       headers: {
-        authorization: authUser + ":::" + authPassword,
+        authorization: localStorage.getItem('sessionId'),
       },
     })
     const data = await response

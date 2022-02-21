@@ -4,270 +4,75 @@
         "password": "123",
         "mycollection": [
             {
-                "uuid": "d6284f57-b9ae-4eb2-bdac-2e894023fd12",
+                "uuid": "7aeeb8fb-5c66-4b53-b24a-7c4f4fe6c842",
                 "tags": [],
-                "id": 331829,
-                "title": "Untitled (Huntington Library Gardens and Monet)",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV213322_dynmc",
+                "id": 356302,
+                "title": "West Berlin 1953",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:764239",
                 "people": [
                     {
                         "role": "Artist",
-                        "birthplace": "Pasadena, California",
-                        "gender": "male",
-                        "displaydate": "born 1938",
-                        "prefix": null,
-                        "culture": "American",
-                        "displayname": "Bill Dane",
-                        "alphasort": "Dane, Bill",
-                        "name": "Bill Dane",
-                        "personid": 22059,
-                        "deathplace": null,
-                        "displayorder": 1
-                    }
-                ],
-                "dated": "1978-1981",
-                "culture": "American",
-                "classification": "Photographs",
-                "technique": "Gelatin silver print",
-                "dimensions": "sheet: 12.5 x 17.6 cm (4 15/16 x 6 15/16 in.)\r\nimage: 11.3 x 17 cm (4 7/16 x 6 11/16 in.)"
-            },
-            {
-                "uuid": "5279fb2d-7f2d-4488-9ed5-432ee478f900",
-                "tags": [],
-                "id": 331916,
-                "title": "Untitled (Berkeley + Monet)",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV213409_dynmc",
-                "people": [
-                    {
-                        "role": "Artist",
-                        "birthplace": "Pasadena, California",
-                        "gender": "male",
-                        "displaydate": "born 1938",
-                        "prefix": null,
-                        "culture": "American",
-                        "displayname": "Bill Dane",
-                        "alphasort": "Dane, Bill",
-                        "name": "Bill Dane",
-                        "personid": 22059,
-                        "deathplace": null,
-                        "displayorder": 1
-                    }
-                ],
-                "dated": "1979",
-                "culture": "American",
-                "classification": "Photographs",
-                "technique": "Gelatin silver print",
-                "dimensions": "sheet: 17.6 x 12.5 cm (6 15/16 x 4 15/16 in.)\r\nimage: 16.8 x 11.3 cm (6 5/8 x 4 7/16 in.)"
-            },
-            {
-                "uuid": "01aaefda-fe5c-4108-a1c0-26651841f5f5",
-                "tags": [],
-                "id": 232339,
-                "title": "Old Man in the Manner of Rembrandt",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV172515_dynmc",
-                "people": [
-                    {
-                        "role": "Artist",
-                        "birthplace": "Venice, Italy",
-                        "gender": "male",
-                        "displaydate": "1727 - 1804",
-                        "prefix": null,
-                        "culture": "Italian",
-                        "displayname": "Giovanni Domenico Tiepolo",
-                        "alphasort": "Tiepolo, Giovanni Domenico",
-                        "name": "Giovanni Domenico Tiepolo",
-                        "personid": 29026,
-                        "deathplace": "Venice, Italy",
-                        "displayorder": 1
-                    }
-                ],
-                "dated": "c. 1757",
-                "culture": "Italian",
-                "classification": "Prints",
-                "technique": "Etching",
-                "dimensions": "plate: 15.2 x 11.4 cm (6 x 4 1/2 in.)\r\nsheet: 16.7 x 13 cm (6 9/16 x 5 1/8 in.)"
-            }
-        ]
-    },
-    {
-        "name": "laszlo.fenyvesi@outlook.com",
-        "password": "123",
-        "mycollection": [
-            {
-                "uuid": "9ad9e7fe-dbf3-417d-9304-b4daec8a30eb",
-                "tags": [],
-                "id": 331916,
-                "title": "Untitled (Berkeley + Monet)",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV213409_dynmc",
-                "people": [
-                    {
-                        "role": "Artist",
-                        "birthplace": "Pasadena, California",
-                        "gender": "male",
-                        "displaydate": "born 1938",
-                        "prefix": null,
-                        "culture": "American",
-                        "displayname": "Bill Dane",
-                        "alphasort": "Dane, Bill",
-                        "name": "Bill Dane",
-                        "personid": 22059,
-                        "deathplace": null,
-                        "displayorder": 1
-                    }
-                ],
-                "dated": "1979",
-                "culture": "American",
-                "classification": "Photographs",
-                "technique": "Gelatin silver print",
-                "dimensions": "sheet: 17.6 x 12.5 cm (6 15/16 x 4 15/16 in.)\r\nimage: 16.8 x 11.3 cm (6 5/8 x 4 7/16 in.)"
-            },
-            {
-                "uuid": "4334161b-4927-4d2e-8f8d-b15a8baf2122",
-                "tags": [],
-                "id": 356373,
-                "title": "Exterior of the Palace of Neptune",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:764374",
-                "people": [
-                    {
-                        "role": "Artist",
-                        "birthplace": "b. Paris 1738",
+                        "birthplace": "Berlin, Germany",
                         "gender": "unknown",
-                        "displaydate": null,
+                        "displaydate": "1927 - 2011",
                         "prefix": null,
-                        "culture": null,
-                        "displayname": "J. Durand",
-                        "alphasort": "Durand, J.",
-                        "name": "J. Durand",
-                        "personid": 63200,
-                        "deathplace": null,
+                        "culture": "German",
+                        "displayname": "Arno Fischer",
+                        "alphasort": "Fischer, Arno",
+                        "name": "Arno Fischer",
+                        "personid": 62544,
+                        "deathplace": "Neustrelitz, Germany",
                         "displayorder": 1
-                    },
+                    }
+                ],
+                "dated": "1953",
+                "culture": "German",
+                "classification": "Photographs",
+                "technique": "Gelatin silver print",
+                "dimensions": "44 × 30.5 cm (17 5/16 × 12 in.)"
+            },
+            {
+                "uuid": "59814a11-477e-41de-842c-30cd3af7af0e",
+                "tags": [],
+                "id": 244829,
+                "title": "Rembrandt (?)",
+                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:INV195856_dynmc",
+                "people": [
                     {
                         "role": "Artist",
-                        "birthplace": "Nancy, France",
-                        "gender": "unknown",
-                        "displaydate": "1717 - 1769",
-                        "prefix": null,
-                        "culture": "French",
-                        "displayname": "Jean-Charles François",
-                        "alphasort": "François, Jean-Charles",
-                        "name": "Jean-Charles François",
-                        "personid": 63073,
-                        "deathplace": "Paris",
-                        "displayorder": 2
-                    },
-                    {
-                        "role": "Artist after",
                         "birthplace": null,
-                        "gender": "unknown",
-                        "displaydate": "1725 - 1754",
-                        "prefix": "After",
-                        "culture": "French",
-                        "displayname": "After Jean-Louis Bovet II",
-                        "alphasort": "Bovet, Jean-Louis II",
-                        "name": "Jean-Louis Bovet II",
-                        "personid": 63075,
+                        "gender": "male",
+                        "displaydate": "1743 - 1808",
+                        "prefix": null,
+                        "culture": "British",
+                        "displayname": "David Deuchar",
+                        "alphasort": "Deuchar, David",
+                        "name": "David Deuchar",
+                        "personid": 31825,
                         "deathplace": null,
-                        "displayorder": 3
+                        "displayorder": 1
                     },
                     {
                         "role": "Artist after",
-                        "birthplace": "Paris",
+                        "birthplace": "Leiden",
                         "gender": "male",
-                        "displaydate": "1724 - 1780",
-                        "prefix": "After",
-                        "culture": "French",
-                        "displayname": "After Gabriel Jacques de Saint-Aubin",
-                        "alphasort": "Saint-Aubin, Gabriel Jacques de",
-                        "name": "Gabriel Jacques de Saint-Aubin",
-                        "personid": 28461,
-                        "deathplace": "Paris",
-                        "displayorder": 4
+                        "displaydate": "1606 - 1669",
+                        "prefix": "After ?",
+                        "culture": "Dutch",
+                        "displayname": "After ? Rembrandt Harmensz. van Rijn",
+                        "alphasort": "Rembrandt Harmensz. van Rijn",
+                        "name": "Rembrandt Harmensz. van Rijn",
+                        "personid": 28241,
+                        "deathplace": "Amsterdam",
+                        "displayorder": 2
                     }
                 ],
-                "dated": "1756",
-                "culture": null,
+                "dated": "18th-19th century",
+                "culture": "British",
                 "classification": "Prints",
                 "technique": "Etching",
-                "dimensions": "Image: 30.3 × 48 cm (11 15/16 × 18 7/8 in.)\r\nPlate: 33 × 48.5 cm (13 × 19 1/8 in.)\r\nSheet: 35.7 × 51.5 cm (14 1/16 × 20 1/4 in.)"
+                "dimensions": null
             }
         ]
-    },
-    {
-        "name": "bigfartengine@yahoo.com",
-        "password": "234",
-        "mycollection": []
-    },
-    {
-        "name": "adc@gmail.com",
-        "password": "valami",
-        "mycollection": [
-            {
-                "uuid": "b960b44c-0138-440f-b5dc-d69dcf9c018c",
-                "tags": [],
-                "id": 1432,
-                "title": "Two Standing Boars",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
-                "dated": "first half 8th century",
-                "culture": "Chinese",
-                "classification": "Sculpture",
-                "technique": null,
-                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
-            },
-            {
-                "uuid": "21c751b1-adbe-423e-a21e-4352e688411e",
-                "tags": [],
-                "id": 1432,
-                "title": "Two Standing Boars",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
-                "dated": "first half 8th century",
-                "culture": "Chinese",
-                "classification": "Sculpture",
-                "technique": null,
-                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
-            },
-            {
-                "uuid": "cd6c9dd6-682f-4475-ac21-5bb27b4ea491",
-                "tags": [],
-                "id": 1432,
-                "title": "Two Standing Boars",
-                "primaryimageurl": "https://nrs.harvard.edu/urn-3:HUAM:VRS95545_dynmc",
-                "dated": "first half 8th century",
-                "culture": "Chinese",
-                "classification": "Sculpture",
-                "technique": null,
-                "dimensions": "each sculpture: 12 x 18.5 x 7.5 cm (4 3/4 x 7 5/16 x 2 15/16 in.)"
-            }
-        ]
-    },
-    {
-        "name": "user1@gmail.com",
-        "password": "user1",
-        "mycollection": []
-    },
-    {
-        "name": "user2@gmail.com",
-        "password": "user2",
-        "mycollection": []
-    },
-    {
-        "name": "user3@gmail.com",
-        "password": "user3",
-        "mycollection": []
-    },
-    {
-        "name": "user4@gmail.com",
-        "password": "user4",
-        "mycollection": []
-    },
-    {
-        "name": "user5@gmail.com",
-        "password": "user5",
-        "mycollection": []
-    },
-    {
-        "name": "user6@gmail.com",
-        "password": "user6",
-        "mycollection": []
     }
 ]
