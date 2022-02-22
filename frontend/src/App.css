@@ -42,7 +42,7 @@ a {
   --black-text: hsl(228, 28%, 20%);
   --white-text: #fff;
   --accent-color: rgb(241, 216, 75);
-}  
+}
 
 body, html {
   font-family: 'Inter', sans-serif;
@@ -307,7 +307,7 @@ section h1 {
   z-index: 1;
   left: 0;
   top: 92px;
-  
+
   width: 100vw;
   /* width: calc(100vw - 17px); */
   height: calc(100vh - 92px);
@@ -380,26 +380,28 @@ div.addTagDiv {
   align-items: center;
   /* padding: .5em; */
 }
-span.addTagLabel {
 
-}
+span.addTagLabel {}
+
 input.addTagTitle {
   display: inline;
   width: 100%;
   padding: 3px;
   margin: 0;
 }
+
 input.addTagTitle::placeholder {
   font-weight: 100;
   font-size: 16px;
 }
+
 button.addTagButton {
   /* display: inline;
   margin: 0;
   padding: 0; */
 }
 
-.spinner{
+.spinner {
   width: 300px;
   height: 300px;
   position: absolute;
