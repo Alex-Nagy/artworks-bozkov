@@ -10,9 +10,9 @@ app.use(express.json());
 let users = require("./users.json");
 const mySessionStorage = {};
 
-app.get("/api/test"), (req, res) => {
+app.get("/api/test", (req, res) => {
   res.sendStatus(200);
-}
+});
 
 app.post("/api/signup", (req, res) => {
   if (!req.body.name || !req.body.password) return res.status(400).json("missing credentials");
