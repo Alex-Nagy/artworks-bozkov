@@ -321,16 +321,37 @@ section h1 {
   margin-bottom: 92px;
 }
 
+form.searchForm {
+  position: relative;
+}
+
 .imageItem img:hover {
   cursor: pointer;
 }
 
 input.searchInput {
   margin-right: 0;
+  padding-right: 0;
 }
 
 button.searchButton {
   margin-left: 0;
+}
+
+button.clearButton {
+  position: relative;
+  /* top: 12px;
+  right: 0;
+  margin: 0; */
+  margin: 0 0 0 -72px;
+  padding: 16px 24px;
+  background: none;
+  color: var(--blue-text);
+}
+
+button.clearButton:hover {
+  background-color: var(--blue-text);
+  color: var(--white-text);
 }
 
 h2.ifYou {
