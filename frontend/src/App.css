@@ -171,6 +171,58 @@ button.loader {
   grid-gap: 24px;
 }
 
+@media (max-width: 576px) {  
+  .artRecords {
+    width: 80vw;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 24px;
+  }
+}
+ 
+@media (min-width: 576px) {  
+  .artRecords {
+    width: 80vw;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
+}
+ 
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media (min-width: 768px) {  
+  .artRecords {
+    width: 80vw;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 24px;
+  }
+}
+ 
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+  .artRecords {
+    width: 80vw;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 24px;
+  }
+}
+ 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  
+  .artRecords {
+    width: 80vw;
+    margin: 2em auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 24px;
+  }
+}
 .artItem {
   padding: .5em;
   display: flex;
