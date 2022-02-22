@@ -7,12 +7,12 @@ const Header = ({authUser, signOut, loggedIn}) => {
       <Link to='/' className='link'><h1>Artworks</h1></Link>
       <nav>
         <ul>
-          <li><Link to='browse' className='link'><button>Browse artworks</button></Link></li>
+          <li><Link to='browse' className='link'><button>Browse Artworks</button></Link></li>
           {loggedIn &&
-            <li><Link to='myCollection' className='link'><button>My collection</button></Link></li>
+            <li><Link to='myCollection' className='link'><button>My Collection</button></Link></li>
           }
           {loggedIn ? 
-            <li><Link to='/' className='link'><button onClick={signOut} >Sign out</button></Link></li> :
+            <li><Link to='/' className='link'><button onClick={signOut} >Sign Out</button></Link></li> :
             <li><Link to='signIn' className='link'><button>Sign In</button></Link></li>
           }
         </ul>

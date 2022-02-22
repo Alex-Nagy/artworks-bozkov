@@ -15,8 +15,8 @@ import Register from "./components/Register";
 const FormData = require("form-data");
 
 
-// const myBackEndURL = "http://localhost:4000/api";
-const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
+const myBackEndURL = "http://localhost:4000/api";
+//const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
 // const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
 // const farBackEndURL = "http://3.71.188.86/artwork";
 const farBackEndURL = "https://artwork-backend.herokuapp.com";
@@ -42,6 +42,7 @@ function App() {
   useEffect(() => {
     const init = async () => {
       const newRecords = await getData(pageNumber, searchString);
+      //console.log(newRecords);
       setPages(newRecords.info.pages);
       setRecords([...records, ...newRecords.records]);
     };

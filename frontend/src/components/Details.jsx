@@ -17,7 +17,7 @@ const Details = ({addToMyCollection, loggedIn}) => {
   useEffect(() => {
     const init = async () => {
       const detailsData = await getDetails(id);
-      console.log(detailsData);
+      //console.log(detailsData);
       setDetails(detailsData);
       setSavedDetails({
         id: detailsData.id,
@@ -37,29 +37,34 @@ const Details = ({addToMyCollection, loggedIn}) => {
   return (
     <div className='details'>
 
-      <h1>Object details</h1>
-
       { details ? 
         <div>
-          { details.primaryimageurl ? 
-            <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
-            <img src={noImage} alt='not available' className='noImageInDetails' /> 
-				  }
-          <div className='objectDetails'>
-            <p><span>Title:</span> {details.title}</p>
-            { details.people ?
-              details.people.map((artist) => <p key={artist.personid}><span>{artist.role}:</span> {artist.name}</p>) : 
-              <p>Unknown artist</p> 
-            } 
-            <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
-            <p><span>Culture:</span> {details.culture}</p>
-            <p><span>Classification:</span> {details.classification}</p>
-            <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
-            <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
+
+          <h1>{details.title.split(',')[0]}</h1>
+
+          <div className='detailsDiv'>
+            { details.primaryimageurl ? 
+              <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
+              <img src={noImage} alt='not available' className='noImageInDetails' /> 
+            }
+            <div className='objectDetails'>
+              <p><span>Title:</span> {details.title}</p>
+              { details.people ?
+                details.people.map((artist) => <p key={artist.personid}><span>{artist.role}:</span> {artist.name}</p>) : 
+                <p><span>Artist:</span> Unknown artist</p> 
+              } 
+              <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
+              <p><span>Culture:</span> {details.culture === null ? 'Unknown' : details.culture}</p>
+              <p><span>Classification:</span> {details.classification === null ? 'Unknown' : details.classification}</p>
+              <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
+              <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
+            </div>
           </div>
+
           {loggedIn && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /></button>}
           {/* <Link to="/browse"><button>Back to the collection</button></Link> */}
-          <button onClick={() => window.history.back()}>Back to the collection</button>
+          <button onClick={() => window.history.back()}>Back To The Collection</button>
+
         </div> :
           <img src={Spinner} alt="Loading..." className='spinner'/>
 

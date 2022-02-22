@@ -6,11 +6,11 @@ const LogIn = ({ authUser, authPassword, setAuthUser, setAuthPassword, setLogged
 
   return (
     <section className="login">
-      <h1>Sign in</h1>
+      <h1>Sign In</h1>
       <form onSubmit={login}>
         <input type="email" name="email" placeholder="email" value={authUser} onChange={e => setAuthUser(e.target.value)} />
         <input type="password" placeholder="password" value={authPassword} onChange={e => setAuthPassword(e.target.value)} />
-        <button>Sign in</button>
+        <button>Sign In</button>
       </form>
       <h2 className="ifYou">If you haven't registered yet, please fill out the registration form.</h2>
       <Link to='/register' className='link'><button>Register</button></Link>

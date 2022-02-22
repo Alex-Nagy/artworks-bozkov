@@ -25,15 +25,16 @@ const Card = ({ record, addToMyCollection, loggedIn, itemToDisplay, setItemToDis
 					<img src={noImage} alt='not available' /> 
 				}
 				{/* </Link> */}
-				<h3>{record.title}</h3>
+				<h3>{record.title.split(',')[0] || record.title.split(';')[0] }</h3>
 			</div>
 
 			<div>
 				{ record.people ?
-					record.people.map((artist, index) => <p key={index}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
+					// record.people.map((artist, index) => <p key={index}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
+					record.people.map((artist, index) => <p key={index}> {artist.name}</p>) : 
 					<p>Unknown artist</p> 
 				} 
-				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
+				{/* <p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p> */}
 			</div>
 			<div className="actions">
 				<Link to={`/details/${record.id}`}><button title="details"><CgDetailsMore /></button></Link>
