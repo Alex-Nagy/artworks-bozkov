@@ -13,7 +13,7 @@ const MyCard = ({ record, loggedIn, farBackEndURL }) => {
 		setItemToDisplay(false);
 	}
 
-	console.log(farBackEndURL + '/files/download/' + record.uuid);
+	// console.log(farBackEndURL + '/files/download/' + record.uuid);
 	return (
 		<>
 		<div key={record.id} className='artItem'>

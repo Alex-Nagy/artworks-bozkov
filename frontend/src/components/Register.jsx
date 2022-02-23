@@ -1,43 +1,33 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
-const Register = ({ name, password, setName, setPassword, setLoggedIn, register }) => {
-
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    let errorMessages = errors;
-
-    const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  
-    switch (name) {
-      case 'password': 
-        errorMessages.password = value.length >= 6 ? '' : 'The password must be at least 6 characters long!';
-        break;
-      case 'email': 
-        errorMessages.email = regex.test(value) ? '' : 'Invalid e-mail address!';
-        break;
-      default:
-        break;
+const Register = ({ name, password, setName, setPassword, setLoggedIn, register, hasMessage, setHasMessage }) => {
+  let navigate = useNavigate();
+  // console.log(errors);
+  const validateEmail = (e) => {
+    const regex = /^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,15}$/;
+    // const regex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+    let answer = regex.test(e.target[0].value);
+    if (answer) { 
+      register(e)
+      navigate("/signIn")
+      return true;
+    } else {
+      setHasMessage("Invalid email address!");
+      return false;
     }
-    setErrors({errorMessages, [name]: value})
-  }
-  console.log(errors);
+}
+
   return (
     <section className="register">
         <h1>Registration</h1>
-        <form onSubmit={(e) => register(e)}>
-        <input name="email" type="email" onChange={(e) => {
-          setName(e.target.value)
-          // handleChange(e)
-        }} value={name} placeholder="email" required />
-        {errors.email && errors.email.length > 0 && <span className='error'>{errors.email}</span>}
-        <input name="password" type="password" onChange={(e) => {
-          setPassword(e.target.value)
-          // handleChange(e)
-        }} value={password} placeholder="password" required />
-        {errors.password && errors.password.length > 0 && <span className='error'>{errors.password}</span>}
+        <form onSubmit={(e) => {
+          e.preventDefault();
+          console.log(e.target[0].value)
+          validateEmail(e)
+        }}>
+        <input name="email" type="email" onChange={(e) => setName(e.target.value)} value={name} placeholder="email" required />
+        <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="password" required  minLength="6" />
         <button>Register</button>
         </form>
     </section>

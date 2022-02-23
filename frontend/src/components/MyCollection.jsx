@@ -35,6 +35,9 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
         <img src={Spinner} alt="Loading..." className='spinner'/>
       }
       </div>
+      {
+        collection && collection.length === 0 && <p className="emptyCollection">Your collection is empty.</p>
+      }
     </section>
   )
 }

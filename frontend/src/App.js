@@ -36,7 +36,7 @@ function App() {
   const [searchString, setSearchString] = useState("");
   
   const [hasMessage, setHasMessage] = useState(false);
-    
+
   useEffect(() => {
     const init = async () => {
       const newRecords = await getData(pageNumber, searchString);
@@ -54,7 +54,7 @@ function App() {
     setLoggedIn(true);
     //Itt átirányít a Browse artworks-re.
   }, [])
-  
+
   const clearSearch = async (e) => {
     e.preventDefault(e);
     setSearchString("");
@@ -82,14 +82,6 @@ function App() {
     if (searchString.length < 3) setSearchString("");
     init();
   };
-  /*
-  const redirect = (route) => {
-    window.history.pushState({},'',route);
-    setPages(1);
-    setRecords([]);
-  }
-  */
-//  const  navigate = useNavigate(); 
 
  const login = async (e) => {
     
@@ -106,11 +98,11 @@ function App() {
       localStorage.setItem('sessionId', response.data);
       localStorage.setItem('user', authUser);
       setLoggedIn(true);
-      // window.history.push("/browse")
+      setAuthPassword("");
     } catch (err) {
+      setAuthPassword("");
       return setHasMessage('Wrong username or password.');
     }  
-    // navigate("browse");
   };  
 
   const register = async (e) => {
@@ -124,8 +116,8 @@ function App() {
       setHasMessage("Successfull registration.");
       setName("");
       setPassword("");
-      //Átirányítani a signIn-re.
-      // redirect('/browse');
+      setAuthUser("");
+      setAuthPassword("");
     } catch (err) {
       if (!err.response) return setHasMessage('Unsuccessfull registration.Please try again.')
       if (err.response.status === 409) {
@@ -140,7 +132,7 @@ function App() {
   const signOut = async() => {
     try {
       setHasMessage('I am trying to logging out. Please wait!');
-      await http.delete(myBackEndURL+'/api/logout', {
+      await http.delete(myBackEndURL+'/logout', {
         headers: {
           authorization: localStorage.getItem("sessionId"),
         },
@@ -210,8 +202,8 @@ function App() {
   };
 
   return (
-    // <div className="App">
     <>
+    {/* <div className="App"> */}
       <BrowserRouter>
         <div className="stickyHeader">
           <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} searchString={searchString} setSearchString={setSearchString} search={search} />
@@ -251,9 +243,9 @@ function App() {
                 setAuthPassword={setAuthPassword}
                 setLoggedIn={setLoggedIn}
                 login={login}
+                />
+              }
               />
-            }
-          />
           <Route
             path="register"
             element={
@@ -264,6 +256,8 @@ function App() {
                 setPassword={setPassword}
                 setLoggedIn={setLoggedIn}
                 register={register}
+                hasMessage={hasMessage}
+                setHasMessage={setHasMessage}
               />
             }
           />

@@ -36,7 +36,7 @@ const Card = ({ record, addToMyCollection, loggedIn, itemToDisplay, setItemToDis
 				{/* <p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p> */}
 			</div>
 			<div className="actions">
-				<Link to={`/details/${record.id}`}><button title="details"><CgDetailsMore /></button></Link>
+				<Link to={`/details/${record.id}`}><button title="Details"><CgDetailsMore /></button></Link>
 				{loggedIn && <button title="Add to my collection" onClick={addToMyCollection}><HiOutlineSaveAs /></button>}
 			</div>
 
