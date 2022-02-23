@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
-import Spinner from '../img/Spinner.gif';
+import Spinner from '../img/loading.gif';
 
 
 const Details = ({addToMyCollection, loggedIn}) => {

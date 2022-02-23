@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import http from 'axios';
 import MyCard from './MyCard';
-import Spinner from '../img/Spinner.gif';
+import Spinner from '../img/loading.gif';
 
 const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
 

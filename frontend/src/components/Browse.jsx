@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Card from './Card';
 import Search from './Search';
-import Spinner from '../img/Spinner.gif';
+import Spinner from '../img/loading.gif';
 
 const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch }) => {
   const [ itemToDisplay, setItemToDisplay ] = useState(false);
