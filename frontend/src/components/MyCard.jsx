@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import noImage from '../img/NoImageAvailable.jpg'
-import { HiOutlineSaveAs } from "react-icons/hi";
 import { CgDetailsMore } from "react-icons/cg";
 
 const MyCard = ({ record, loggedIn, farBackEndURL }) => {
-    const [ itemToDisplay, setItemToDisplay ] = useState(false);
-	// const [ tagTitle, setTagTitle ] = useState("");
+	const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
-    const showPicture = (e) => {
+	const showPicture = (e) => {
 		setItemToDisplay(e);
-	  }
-	  const itemClose = () => {
+	}
+	const itemClose = () => {
 		setItemToDisplay(false);
-	  }
+	}
+
 	console.log(farBackEndURL + '/files/download/' + record.uuid);
 	return (
 		<>
@@ -26,15 +25,15 @@ const MyCard = ({ record, loggedIn, farBackEndURL }) => {
 					<img src={noImage} alt='not available' /> 
 				}
 				{/* </Link> */}
-				<h3>{record.title}</h3>
+				<h3>{record.title.split(',')[0] || record.title.split(';')[0] }</h3>
 			</div>
 
 			<div>
 				{ record.people ?
-					record.people.map((artist, index) => <p key={index}><span className='label'>{artist.role}:</span> {artist.name}</p>) : 
+					record.people.map((artist, index) => <p key={index}>{artist.name}</p>) : 
 					<p>Unknown artist</p> 
 				} 
-				<p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p>
+				{/* <p><span className='label'>Date:</span> {record.dated === null ? 'Unknown' : record.dated}</p> */}
 			</div>
 			<div>
 				{/* <p><span className="label">Tag(s):</span></p> */}

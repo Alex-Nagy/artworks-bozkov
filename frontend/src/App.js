@@ -14,17 +14,17 @@ import Register from "./components/Register";
 
 const FormData = require("form-data");
 
-
-//const myBackEndURL = "http://localhost:4000/api";
+// const myBackEndURL = "http://localhost:4000/api";
 const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
 // const farBackEndURL = "https://artwork-backend.herokuapp.com";
 const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
+
 
 function App() {
   const [records, setRecords] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [pages, setPages] = useState(1);
-
+  
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   
@@ -34,9 +34,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   
   const [searchString, setSearchString] = useState("");
-
+  
   const [hasMessage, setHasMessage] = useState(false);
- 
+    
   useEffect(() => {
     const init = async () => {
       const newRecords = await getData(pageNumber, searchString);
@@ -54,13 +54,14 @@ function App() {
     setLoggedIn(true);
     //Itt átirányít a Browse artworks-re.
   }, [])
-
+  
   const clearSearch = async (e) => {
     e.preventDefault(e);
     setSearchString("");
-    const data = await getData(1, "", "title");
+    const data = await getData(1, "");
     setPages(data.info.pages);
     setRecords(data.records);
+    setHasMessage(false);
   }
   
   const search = () => {
@@ -68,15 +69,30 @@ function App() {
       setRecords([])
       setPageNumber(1);
       const data = await getData(1, searchString);
-      setPages(data.info.pages);
-      setRecords(data.records);
-
+      if (data.info.totalrecords) {
+        setPages(data.info.pages);
+        setRecords(data.records);
+        setHasMessage(false);
+      } else {
+        setPages(1);
+        setRecords([]);
+        setHasMessage('No result.');
+      }
     };
     if (searchString.length < 3) setSearchString("");
     init();
   };
+  /*
+  const redirect = (route) => {
+    window.history.pushState({},'',route);
+    setPages(1);
+    setRecords([]);
+  }
+  */
+//  const  navigate = useNavigate(); 
 
-  const login = async (e) => {
+ const login = async (e) => {
+    
     e.preventDefault();
     try {
       setHasMessage('I am trying to login. Please wait!');
@@ -84,17 +100,18 @@ function App() {
       }, {
         headers: {
           authorization: authUser + ':::' + authPassword
-        }
-      })
+        }  
+      })  
       setHasMessage(false);
       localStorage.setItem('sessionId', response.data);
       localStorage.setItem('user', authUser);
       setLoggedIn(true);
-      setHasMessage(false);
+      // window.history.push("/browse")
     } catch (err) {
       return setHasMessage('Wrong username or password.');
-    }
-  };
+    }  
+    // navigate("browse");
+  };  
 
   const register = async (e) => {
     e.preventDefault();
@@ -108,13 +125,14 @@ function App() {
       setName("");
       setPassword("");
       //Átirányítani a signIn-re.
+      // redirect('/browse');
     } catch (err) {
-      if (!err.response) return setHasMessage('Ooops...Something went wrong.')
+      if (!err.response) return setHasMessage('Unsuccessfull registration.Please try again.')
       if (err.response.status === 409) {
-        setHasMessage('User already exist.')
+        setHasMessage('User already exists. Please, choose another email address.')
       }
       if (err.response.status === 400) {
-        setHasMessage('Missing credentials.')
+        setHasMessage('Missing credentials. Please, fill out the form correctly.')
       }
     }
   }
@@ -127,13 +145,13 @@ function App() {
           authorization: localStorage.getItem("sessionId"),
         },
       }, {});
-      setHasMessage(false);
     } catch (err) {
     } finally {
       localStorage.removeItem('sessionId');
       setAuthUser('')
       setAuthPassword('')
       setLoggedIn(false);
+      setHasMessage(false);
     }
   }
 
@@ -166,7 +184,7 @@ function App() {
         setHasMessage("Upload error.");
       }
     } catch (err) {
-      setHasMessage("Ooops! Something went wrong.");
+      setHasMessage("Can't connect to the server. Please, try again!");
     }
 
     if (uuid) {
@@ -185,7 +203,7 @@ function App() {
           );
           setHasMessage("Artwork added.");
         } catch (err) {
-          setHasMessage("File system error.");
+          setHasMessage("File system error. Please, try again!");
         }
       // setHasMessage('Upload in progress. Please wait!');
     }

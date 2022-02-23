@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
@@ -9,7 +9,6 @@ import Spinner from '../img/loading.gif';
 const Details = ({addToMyCollection, loggedIn}) => {
 
   const { id } = useParams();
-  // console.log(id);
 
   const [ details, setDetails ] = useState(null);
   const [ savedDetails, setSavedDetails ] = useState(null);
@@ -53,18 +52,16 @@ const Details = ({addToMyCollection, loggedIn}) => {
                 <p><span>Artist:</span> Unknown artist</p> 
               } 
               <p><span>Description:</span> {details.description === null ? 'Unknown' : details.description} </p>
-              <p><span>Classification:</span> {details.classification === null ? 'Unknown' : details.classification} </p>
-              <p><span>Worktype:</span> {details.worktype === null ? 'Unknown' : details.worktype} </p>
               <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
               <p><span>Culture:</span> {details.culture === null ? 'Unknown' : details.culture}</p>
               <p><span>Classification:</span> {details.classification === null ? 'Unknown' : details.classification}</p>
+              {/* <p><span>Worktype:</span> {details.worktype === null ? 'Unknown' : details.worktype} </p> */}
               <p><span>Technique:</span> {details.technique === null ? 'Unknown' : details.technique}</p>
               <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
             </div>
           </div>
 
           {loggedIn && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /></button>}
-          {/* <Link to="/browse"><button>Back to the collection</button></Link> */}
           <button onClick={() => window.history.back()}>Back To The Collection</button>
 
         </div> :

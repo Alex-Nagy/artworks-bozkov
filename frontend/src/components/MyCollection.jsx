@@ -15,7 +15,7 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
       },
     })
     const data = await response
-    console.log(data);  // 401 Unauthorized ??
+    // console.log(data);  // 401 Unauthorized ??
 
     setCollection(data.data)
   }

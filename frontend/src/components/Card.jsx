@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
 import { CgDetailsMore } from "react-icons/cg";
 
 const Card = ({ record, addToMyCollection, loggedIn, itemToDisplay, setItemToDisplay }) => {
-    // const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
     // const showPicture = (e) => {
 		// setItemToDisplay(e);
