@@ -3,12 +3,13 @@ import Card from './Card';
 import Search from './Search';
 import Spinner from '../img/Spinner.gif';
 
-const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages }) => {
+const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch }) => {
   const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
   // const showPicture = (e) => {
 	// 	setItemToDisplay(e);
   // }
+
   const itemClose = () => {
     setItemToDisplay(false);
   }
@@ -17,7 +18,7 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, 
 
   return (
     <>
-    <div className='search'><Search searchString={searchString} setSearchString={setSearchString} search={search} /></div>
+    <div className='search'><Search searchString={searchString} setSearchString={setSearchString} search={search} clearSearch={clearSearch} /></div>
     <div className='artRecords'>
       { records.length ? 
         records.map((record, index) => {

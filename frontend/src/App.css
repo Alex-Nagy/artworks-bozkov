@@ -285,19 +285,25 @@ button.loader {
 
 .details {
   height: calc(100vh - 100px);
+  width: 80vw;
+  margin: 0 auto;
   max-height: 100vh;
   padding-top: 50px;
   backdrop-filter: blur(6px);
 }
 
 .details h1 {
-  font-size: 40px;
-  color: var(--blue-text);
+  font-size: 36px;
+  color: var(--black-text);
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--black-text);
+  margin-bottom: .75em;
+  margin-right: 1rem;
 }
 
 .detailsDiv {
   margin: 50px 0px;
-  padding: 30px 0px;
+  padding: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -324,12 +330,13 @@ button.loader {
   margin-right: 10px;
   font-size: 20px;
   font-weight: 600;
+  color: var(--black-text);
 }
 
 .objectDetails p {
   display: flex;
   align-items: flex-start;
-  margin: 0.5rem;
+  margin: 0.5rem 0 0 0;
   font-size: 20px;
 }
 
@@ -388,6 +395,8 @@ section h1 {
 
 form.searchForm {
   position: relative;
+  margin-top: 1em;
+  /* width: 80vw; */
 }
 
 .imageItem img:hover {
@@ -397,6 +406,13 @@ form.searchForm {
 input.searchInput {
   margin-right: 0;
   padding-right: 0;
+  /* width: 50vw; */
+  width: 540px;
+}
+input.searchInput::placeholder {
+  color: #777;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 button.searchButton {
@@ -405,10 +421,10 @@ button.searchButton {
 
 button.clearButton {
   position: relative;
+  left: 0;
   /* top: 12px;
-  right: 0;
   margin: 0; */
-  margin: 0 0 0 -72px;
+  margin: 0 0 0 -156px;
   padding: 16px 24px;
   background: none;
   color: var(--blue-text);
@@ -417,6 +433,9 @@ button.clearButton {
 button.clearButton:hover {
   background-color: var(--blue-text);
   color: var(--white-text);
+}
+button.clearButton.hidden {
+  visibility: hidden;
 }
 
 h2.ifYou {
@@ -459,4 +478,16 @@ button.addTagButton {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+div.message {
+  background-color: var(--accent-color);
+  color: var(--black-text);
+  font-size: 24px;
+  font-weight: 700;
+  padding: .5em;
+}
+
+div.message:hover {
+  cursor: pointer;
 }

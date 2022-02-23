@@ -40,19 +40,21 @@ const Details = ({addToMyCollection, loggedIn}) => {
       { details ? 
         <div>
 
-          <h1>{details.title.split(',')[0]}</h1>
-
           <div className='detailsDiv'>
             { details.primaryimageurl ? 
               <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
               <img src={noImage} alt='not available' className='noImageInDetails' /> 
             }
             <div className='objectDetails'>
+              <h1>{details.title.split(',')[0]}</h1>
               <p><span>Title:</span> {details.title}</p>
               { details.people ?
                 details.people.map((artist) => <p key={artist.personid}><span>{artist.role}:</span> {artist.name}</p>) : 
                 <p><span>Artist:</span> Unknown artist</p> 
               } 
+              <p><span>Description:</span> {details.description === null ? 'Unknown' : details.description} </p>
+              <p><span>Classification:</span> {details.classification === null ? 'Unknown' : details.classification} </p>
+              <p><span>Worktype:</span> {details.worktype === null ? 'Unknown' : details.worktype} </p>
               <p><span>Date:</span> {details.dated === null ? 'Unknown' : details.dated} </p>
               <p><span>Culture:</span> {details.culture === null ? 'Unknown' : details.culture}</p>
               <p><span>Classification:</span> {details.classification === null ? 'Unknown' : details.classification}</p>

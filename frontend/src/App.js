@@ -17,11 +17,8 @@ const FormData = require("form-data");
 
 //const myBackEndURL = "http://localhost:4000/api";
 const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
-// const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
-// const farBackEndURL = "http://3.71.188.86/artwork";
 // const farBackEndURL = "https://artwork-backend.herokuapp.com";
 const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
-// const farBackEndURL = "http://backend-bozkov.duckdns.org";
 
 function App() {
   const [records, setRecords] = useState([]);
@@ -37,12 +34,12 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   
   const [searchString, setSearchString] = useState("");
-  // const [tagTitle, setTagTitle] = useState("");
 
+  const [hasMessage, setHasMessage] = useState(false);
+ 
   useEffect(() => {
     const init = async () => {
       const newRecords = await getData(pageNumber, searchString);
-      //console.log(newRecords);
       setPages(newRecords.info.pages);
       setRecords([...records, ...newRecords.records]);
     };
@@ -58,22 +55,22 @@ function App() {
     //Itt átirányít a Browse artworks-re.
   }, [])
 
-  // useEffect(() => {
-  //   const user = localStorage.getItem("user");
-  //   const password = localStorage.getItem("password");
-  //   if (!user || !password) return;
-  //   setAuthUser(user);
-  //   setAuthPassword(password);
-  //   setLoggedIn(true);
-  // }, []);
-
+  const clearSearch = async (e) => {
+    e.preventDefault(e);
+    setSearchString("");
+    const data = await getData(1, "", "title");
+    setPages(data.info.pages);
+    setRecords(data.records);
+  }
+  
   const search = () => {
     const init = async () => {
       setRecords([])
       setPageNumber(1);
-      const searchRecords = await getData(1, searchString);
-      setPages(searchRecords.info.pages);
-      setRecords([...searchRecords.records]);
+      const data = await getData(1, searchString);
+      setPages(data.info.pages);
+      setRecords(data.records);
+
     };
     if (searchString.length < 3) setSearchString("");
     init();
@@ -82,51 +79,55 @@ function App() {
   const login = async (e) => {
     e.preventDefault();
     try {
+      setHasMessage('I am trying to login. Please wait!');
       const response = await http.post(myBackEndURL+'/login', {
       }, {
         headers: {
           authorization: authUser + ':::' + authPassword
         }
       })
+      setHasMessage(false);
       localStorage.setItem('sessionId', response.data);
       localStorage.setItem('user', authUser);
       setLoggedIn(true);
+      setHasMessage(false);
     } catch (err) {
-      return alert('Wrong username or password');
+      return setHasMessage('Wrong username or password.');
     }
   };
 
   const register = async (e) => {
     e.preventDefault();
     try {
+      setHasMessage('I am trying to register. Please wait!');
       await http.post(myBackEndURL+'/signup', {
         name: name,
         password: password
       })
-      alert("Successfull registration");
-
+      setHasMessage("Successfull registration.");
       setName("");
       setPassword("");
       //Átirányítani a signIn-re.
     } catch (err) {
-      if (!err.response) return alert('Ooops...Something went wrong')
+      if (!err.response) return setHasMessage('Ooops...Something went wrong.')
       if (err.response.status === 409) {
-        alert('User already exist')
+        setHasMessage('User already exist.')
       }
-
       if (err.response.status === 400) {
-        alert('Missing credentials')
+        setHasMessage('Missing credentials.')
       }
     }
   }
 
   const signOut = async() => {
     try {
+      setHasMessage('I am trying to logging out. Please wait!');
       await http.delete(myBackEndURL+'/api/logout', {
         headers: {
           authorization: localStorage.getItem("sessionId"),
         },
       }, {});
+      setHasMessage(false);
     } catch (err) {
     } finally {
       localStorage.removeItem('sessionId');
@@ -143,6 +144,7 @@ function App() {
   const addToMyCollection = async (artwork) => {
     let uuid = false;
     try {
+      setHasMessage('Upload in progress. Please wait!');
       const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
       try {
         let fileToUpload = new FormData();
@@ -161,10 +163,10 @@ function App() {
         })
       } catch (err) {
         console.log(err);
-        alert("Upload error.");
+        setHasMessage("Upload error.");
       }
     } catch (err) {
-      alert("Ooops! Something went wrong");
+      setHasMessage("Ooops! Something went wrong.");
     }
 
     if (uuid) {
@@ -181,10 +183,11 @@ function App() {
             },
           }
           );
-          alert("Artwork added");
+          setHasMessage("Artwork added.");
         } catch (err) {
-          alert("File system error.");
+          setHasMessage("File system error.");
         }
+      // setHasMessage('Upload in progress. Please wait!');
     }
   };
 
@@ -193,8 +196,9 @@ function App() {
     <>
       <BrowserRouter>
         <div className="stickyHeader">
-          <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} search={searchString} setSearch={setSearchString} />
+          <Header authUser={authUser} signOut={signOut} loggedIn={loggedIn} searchString={searchString} setSearchString={setSearchString} search={search} />
         </div>
+        { hasMessage && <div className="message" onClick={() => setHasMessage(false)} title="Click to close message!">{hasMessage}</div>}
           <Routes>
           <Route path="/" element={<Homepage />} />
           <Route
@@ -210,6 +214,7 @@ function App() {
                 search={search}
                 pageNumber={pageNumber}
                 pages={pages}
+                clearSearch={clearSearch}
               />
             }
           />
