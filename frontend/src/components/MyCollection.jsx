@@ -8,6 +8,7 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
   const [collection, setCollection] = useState(null);
     
   const fetchCollected = async(artwork) => {
+    // 
    const response = await http.get(myBackEndURL+"/mycollection", 
     {
       headers: {
@@ -15,12 +16,17 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
       },
     })
     const data = await response
-    // console.log(data);  // 401 Unauthorized ??
-
+    console.log(data);  // 401 Unauthorized ??
+    // if (data.data.length)
     setCollection(data.data)
   }
 
   useEffect(() => {
+    console.log(loggedIn)
+    if (!loggedIn) {
+      setCollection([])
+      return false;
+    }
     fetchCollected()
   }, [])
   
@@ -36,7 +42,10 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
       }
       </div>
       {
-        collection && collection.length === 0 && <p className="emptyCollection">Your collection is empty.</p>
+        loggedIn && collection && collection.length === 0 && <p className="emptyCollection">Your collection is empty.</p>
+      }
+      {
+        !loggedIn && <p className="emptyCollection">Please, login first.</p>
       }
     </section>
   )

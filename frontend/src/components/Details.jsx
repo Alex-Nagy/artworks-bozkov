@@ -4,14 +4,17 @@ import { getDetails } from '../api';
 import noImage from '../img/NoImageAvailable.jpg'
 import { HiOutlineSaveAs } from "react-icons/hi";
 import Spinner from '../img/loading.gif';
+import http from "axios";
 
 
-const Details = ({addToMyCollection, loggedIn}) => {
+const Details = ({addToMyCollection, loggedIn, setItemToDisplay, myBackEndURL}) => {
 
   const { id } = useParams();
 
   const [ details, setDetails ] = useState(null);
   const [ savedDetails, setSavedDetails ] = useState(null);
+
+  const [duplicated, setDuplicated] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -31,6 +34,29 @@ const Details = ({addToMyCollection, loggedIn}) => {
       })
     };
     init();
+    const check = async () => {
+      try {
+        const response = await http.get(myBackEndURL+"/mycollection", 
+        {
+          headers: {
+            authorization: localStorage.getItem('sessionId'),
+          },
+        })
+        const data = await response    
+        if (data.data && data.data.length > 0) {
+          console.log(data.data)
+          for (const item of data.data) {
+            if (item.id === details.id) setDuplicated(true);
+            // console.log(item.id)
+            // console.log(details.id)
+          }
+        }
+        if (!duplicated) {
+        }  
+      } catch (err) {
+      }
+    }
+    check();
   }, []);
   
   return (
@@ -41,7 +67,7 @@ const Details = ({addToMyCollection, loggedIn}) => {
 
           <div className='detailsDiv'>
             { details.primaryimageurl ? 
-              <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' /> : 
+              <img src={details.primaryimageurl} alt={details.title} className='imageInDetails' onClick={() => setItemToDisplay(details.primaryimageurl)} /> : 
               <img src={noImage} alt='not available' className='noImageInDetails' /> 
             }
             <div className='objectDetails'>
@@ -60,10 +86,11 @@ const Details = ({addToMyCollection, loggedIn}) => {
               <p><span>Dimensions:</span> {details.dimensions === null ? 'Cannot be determined' : details.dimensions}</p>
             </div>
           </div>
-
-          {loggedIn && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /></button>}
-          <button onClick={() => window.history.back()}>Back To The Collection</button>
-
+          
+          <div className="detailsButtons">
+            {loggedIn && !duplicated && <button title="Add to my collection" onClick={() => addToMyCollection(savedDetails)}><HiOutlineSaveAs /><span className="buttonTitleLeft">Save</span></button>}
+            <button onClick={() => window.history.back()}>Back To The Collection</button>
+          </div>
         </div> :
           <img src={Spinner} alt="Loading..." className='spinner'/>
 

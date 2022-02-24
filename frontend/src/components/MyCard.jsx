@@ -43,7 +43,7 @@ const MyCard = ({ record, loggedIn, farBackEndURL }) => {
 				}
 			</div>
 			<div className="actions">
-				<Link to={`/details/${record.id}`}><button title="details"><CgDetailsMore /></button></Link>
+				<Link to={`/details/${record.id}`}><button title="Details"><CgDetailsMore /><span className="buttonTitleLeft">Details</span></button></Link>
 				{/* <div className="addTagDiv">
 					<input type="text" className="addTagTitle" value={tagTitle} placeholder="add new tag" onChange={(e) => setTagTitle(e.target.value)} />
 				</div>

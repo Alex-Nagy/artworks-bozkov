@@ -30,13 +30,17 @@ function App() {
   
   const [authUser, setAuthUser] = useState("");
   const [authPassword, setAuthPassword] = useState("");
-  
   const [loggedIn, setLoggedIn] = useState(false);
   
   const [searchString, setSearchString] = useState("");
   
   const [hasMessage, setHasMessage] = useState(false);
 
+  const [itemToDisplay, setItemToDisplay] = useState(false);
+
+  const itemClose = () => {
+    setItemToDisplay(false);
+  }
   useEffect(() => {
     const init = async () => {
       const newRecords = await getData(pageNumber, searchString);
@@ -119,7 +123,7 @@ function App() {
       setAuthUser("");
       setAuthPassword("");
     } catch (err) {
-      if (!err.response) return setHasMessage('Unsuccessfull registration.Please try again.')
+      if (!err.response) return setHasMessage('Unsuccessfull registration. Please try again.')
       if (err.response.status === 409) {
         setHasMessage('User already exists. Please, choose another email address.')
       }
@@ -152,28 +156,54 @@ function App() {
   };
 
   const addToMyCollection = async (artwork) => {
+
     let uuid = false;
     try {
-      setHasMessage('Upload in progress. Please wait!');
-      const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
-      try {
-        let fileToUpload = new FormData();
-        fileToUpload.append("file", downloadedFile.data);
-        await http.post(
-          farBackEndURL+'/upload',
-          fileToUpload,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-              'Access-Control-Allow-Origin': '*' 
-            },
+      setHasMessage('Check collection. Please wait!');
+      const response = await http.get(myBackEndURL+"/mycollection", 
+      {
+        headers: {
+          authorization: localStorage.getItem('sessionId'),
+        },
+      })
+      const data = await response
+      let duplicated = false;
+      if (data.data && data.data.length > 0) {
+        console.log(data.data)
+        for (const item of data.data) {
+          if (item.id === artwork.id) duplicated = true;
+          console.log(item.id)
+          console.log(artwork)
+        }
+      }
+      if (!duplicated) {
+        try {
+          setHasMessage('Upload in progress. Please wait!');
+          const downloadedFile = await http.get(artwork.primaryimageurl, { responseType: 'blob' }, {}) 
+          try {
+            let fileToUpload = new FormData();
+            fileToUpload.append("file", downloadedFile.data);
+            await http.post(
+              farBackEndURL+'/upload',
+              fileToUpload,
+              {
+                headers: {
+                  'Content-Type': 'multipart/form-data',
+                  'Access-Control-Allow-Origin': '*' 
+                },
+              }
+            ).then(data => {
+              uuid = data.data.uuid;
+            })
+          } catch (err) {
+            console.log(err);
+            setHasMessage("Upload error.");
           }
-        ).then(data => {
-          uuid = data.data.uuid;
-        })
-      } catch (err) {
-        console.log(err);
-        setHasMessage("Upload error.");
+        } catch (err) {
+          setHasMessage("Can't connect to the server. Please, try again!");
+        }
+      } else {
+        setHasMessage("This record exists in your collection.");
       }
     } catch (err) {
       setHasMessage("Can't connect to the server. Please, try again!");
@@ -201,6 +231,10 @@ function App() {
     }
   };
 
+  // const showPicture = (e) => {
+	// 	setItemToDisplay(e);
+  // }
+
   return (
     <>
     {/* <div className="App"> */}
@@ -225,12 +259,15 @@ function App() {
                 pageNumber={pageNumber}
                 pages={pages}
                 clearSearch={clearSearch}
+                itemToDisplay={itemToDisplay}
+                setItemToDisplay={setItemToDisplay}
+                itemClose={itemClose}
               />
             }
           />
           <Route
             path="details/:id"
-            element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} />}
+            element={<Details addToMyCollection={addToMyCollection} loggedIn={loggedIn} itemToDisplay={itemToDisplay} setItemToDisplay={setItemToDisplay} itemClose={itemClose} myBackEndURL={myBackEndURL} />}
           />
           <Route path="myCollection" element={<MyCollection authUser={authUser} myBackEndURL={myBackEndURL} farBackEndURL={farBackEndURL} loggedIn={loggedIn} />} />
           <Route
@@ -263,6 +300,11 @@ function App() {
           />
         </Routes>
       </BrowserRouter>
+      {itemToDisplay !== false &&
+			<div className="imageItem" onClick={itemClose}>
+				<img src={itemToDisplay} alt="viewer"/>;
+			</div>
+		}
     {/* </div> */}
     </>
   );

@@ -3,16 +3,16 @@ import Card from './Card';
 import Search from './Search';
 // import Spinner from '../img/loading.gif';
 
-const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch }) => {
-  const [ itemToDisplay, setItemToDisplay ] = useState(false);
+const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch, itemToDisplay, setItemToDisplay, itemClose }) => {
+  // const [ itemToDisplay, setItemToDisplay ] = useState(false);
 
-  // const showPicture = (e) => {
-	// 	setItemToDisplay(e);
+  // // const showPicture = (e) => {
+	// // 	setItemToDisplay(e);
+  // // }
+
+  // const itemClose = () => {
+  //   setItemToDisplay(false);
   // }
-
-  const itemClose = () => {
-    setItemToDisplay(false);
-  }
 
   return (
     <>
@@ -38,11 +38,11 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, 
       }
     </div>
     { pageNumber < pages && <button className='loader' onClick={onChange}>load more...</button> }
-		{itemToDisplay !== false &&
+		{/* {itemToDisplay !== false &&
 			<div className="imageItem" onClick={itemClose}>
 				<img src={itemToDisplay} alt="viewer"/>;
 			</div>
-		}
+		} */}
     </>
   )
 }
