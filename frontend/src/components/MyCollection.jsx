@@ -16,13 +16,13 @@ const MyCollection = ({ authUser, myBackEndURL, farBackEndURL, loggedIn }) => {
       },
     })
     const data = await response
-    console.log(data);  // 401 Unauthorized ??
+    // console.log(data);  // 401 Unauthorized ??
     // if (data.data.length)
     setCollection(data.data)
   }
 
   useEffect(() => {
-    console.log(loggedIn)
+    // console.log(loggedIn)
     if (!loggedIn) {
       setCollection([])
       return false;

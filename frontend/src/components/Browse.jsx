@@ -1,18 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Card from './Card';
 import Search from './Search';
+import http from 'axios';
 // import Spinner from '../img/loading.gif';
 
-const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch, itemToDisplay, setItemToDisplay, itemClose }) => {
-  // const [ itemToDisplay, setItemToDisplay ] = useState(false);
-
-  // // const showPicture = (e) => {
-	// // 	setItemToDisplay(e);
-  // // }
-
-  // const itemClose = () => {
-  //   setItemToDisplay(false);
-  // }
+const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, setSearchString, search, pageNumber, pages, clearSearch, itemToDisplay, setItemToDisplay, itemClose, myBackEndURL }) => {
 
   return (
     <>
@@ -31,7 +23,8 @@ const Browse = ({ records, onChange, addToMyCollection, loggedIn, searchString, 
             technique: record.technique,
             dimensions: record.dimensions
           }
-          return <Card key={index} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} itemToDisplay={itemToDisplay} setItemToDisplay={setItemToDisplay} />
+          // if (savedRecords.includes(record.id))
+          return <Card key={index} record={record} addToMyCollection={() => addToMyCollection(savedDetails)} loggedIn={loggedIn} itemToDisplay={itemToDisplay} setItemToDisplay={setItemToDisplay} myBackEndURL={myBackEndURL} />
         })
         : ""
         // <img src={Spinner} alt="Loading..." className='spinner'/>

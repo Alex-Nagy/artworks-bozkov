@@ -262,6 +262,7 @@ function App() {
                 itemToDisplay={itemToDisplay}
                 setItemToDisplay={setItemToDisplay}
                 itemClose={itemClose}
+                myBackEndURL={myBackEndURL}
               />
             }
           />

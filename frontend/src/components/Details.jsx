@@ -14,7 +14,7 @@ const Details = ({addToMyCollection, loggedIn, setItemToDisplay, myBackEndURL}) 
   const [ details, setDetails ] = useState(null);
   const [ savedDetails, setSavedDetails ] = useState(null);
 
-  const [duplicated, setDuplicated] = useState(false);
+  const [ duplicated, setDuplicated ] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -32,8 +32,28 @@ const Details = ({addToMyCollection, loggedIn, setItemToDisplay, myBackEndURL}) 
         technique: detailsData.technique,
         dimensions: detailsData.dimensions
       })
+      // try {
+      //   const response = await http.get(myBackEndURL+"/mycollection", 
+      //   {
+      //     headers: {
+      //       authorization: localStorage.getItem('sessionId'),
+      //     },
+      //   })
+      //   const data = await response    
+      //   if (data.data && data.data.length > 0) {
+      //     // console.log(data.data)
+      //     for (const item of data.data) {
+      //       if (item.id === id) setDuplicated(true);
+      //       console.log("item: " + item.id + ",  keresett: " + id )
+      //     }
+      //   }
+      // } catch (err) {
+      // }
     };
     init();
+  }, []);
+  
+  useEffect(() => {
     const check = async () => {
       try {
         const response = await http.get(myBackEndURL+"/mycollection", 
@@ -44,21 +64,18 @@ const Details = ({addToMyCollection, loggedIn, setItemToDisplay, myBackEndURL}) 
         })
         const data = await response    
         if (data.data && data.data.length > 0) {
-          console.log(data.data)
+          // console.log(data.data)
           for (const item of data.data) {
-            if (item.id === details.id) setDuplicated(true);
-            // console.log(item.id)
-            // console.log(details.id)
+            if (item.id === parseInt(id)) setDuplicated(true);
+            // console.log("item: " + item.id + ",  keresett: " + id )
           }
         }
-        if (!duplicated) {
-        }  
       } catch (err) {
       }
-    }
+    };
     check();
   }, []);
-  
+
   return (
     <div className='details'>
 

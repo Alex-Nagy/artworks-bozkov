@@ -349,7 +349,7 @@ button.loader {
 }
 
 .objectDetails {
-  width: 40vw;
+  /* width: 40vw; */
   padding: 30px 0px 30px 50px;
   text-align: left;
 }
