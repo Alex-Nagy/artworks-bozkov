@@ -10,7 +10,3 @@ CodeCool team project
 - Express
 - Axios
 - JSON
-
-## Deploy
-AWS temporary link
-http://frontend-bozkov.duckdns.org/
