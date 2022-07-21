@@ -1,4 +1,4 @@
-# Artworks-bozkov
+# Artworks Searcher
 CodeCool team project
 
 ## Frontend
@@ -8,5 +8,3 @@ CodeCool team project
 ## Backend
 - Node.js
 - Express
-- Axios
-- JSON
