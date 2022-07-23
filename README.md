@@ -1,5 +1,5 @@
 # Artworks Searcher
-CodeCool team project
+CodeCool big team project
 
 ## Frontend
 - React
