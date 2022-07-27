@@ -1,5 +1,5 @@
 # Artworks Searcher
-CodeCool big team project
+A fullstack web application that allows you to search for artworks using the Harvard Art Museum API.
 
 ## Frontend
 - React
