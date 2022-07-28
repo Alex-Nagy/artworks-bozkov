@@ -27,11 +27,10 @@ A fullstack web application that allows you to search for artworks using the Har
 
 ##### Start backend
 
-###### Dev start
-
     cd backend
     npm install
     node index.js
+###### _And while running in background_
 
 ##### Start frontend
 
