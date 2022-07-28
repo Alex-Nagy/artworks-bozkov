@@ -20,6 +20,11 @@ A fullstack web application that allows you to search for artworks using the Har
 <img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original.svg" title="Git" **alt="Git" width="40" height="40"/>
 </div>
 
+### Screenshots
+![Home](./screenshots/Screenshot%202022-07-28%20200331.png)
+![Register](./screenshots/Screenshot%202022-07-28%20200422.png)
+![Browse](./screenshots/Screenshot%202022-07-28%20200517.png)
+
 ##### Start backend
 
 ###### Dev start

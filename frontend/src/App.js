@@ -14,8 +14,8 @@ import Register from "./components/Register";
 
 const FormData = require("form-data");
 
-// const myBackEndURL = "http://localhost:4000/api";
-const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
+const myBackEndURL = "http://localhost:4000/api";
+// const myBackEndURL = "http://frontend-bozkov.duckdns.org:4000/api";
 // const farBackEndURL = "https://artwork-backend.herokuapp.com";
 const farBackEndURL = "http://backend-bozkov.duckdns.org/artwork";
 
@@ -184,7 +184,7 @@ function App() {
             let fileToUpload = new FormData();
             fileToUpload.append("file", downloadedFile.data);
             await http.post(
-              farBackEndURL+'/upload',
+              myBackEndURL+'/upload',
               fileToUpload,
               {
                 headers: {
